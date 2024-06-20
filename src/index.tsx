@@ -2,8 +2,9 @@ import { SerializedScheme, genCSS } from "./utils.js";
 
 export { Button } from "./buttons/Button.jsx";
 export { ButtonLink } from "./buttons/ButtonLink.jsx";
-export { SegmentedButtonContainer } from "./buttons/SegmentedButtonContainer.jsx"
-export { SegmentedButtonItem } from "./buttons/SegmentedButtonItem.jsx"
+export { SegmentedButtonContainer } from "./buttons/SegmentedButtonContainer.jsx";
+export { SegmentedButtonItem } from "./buttons/SegmentedButtonItem.jsx";
+export { FAB } from "./buttons/FAB.jsx";
 
 export { Card } from "./containers/Card.jsx";
 export { CardClickable } from "./containers/CardClickable.jsx";

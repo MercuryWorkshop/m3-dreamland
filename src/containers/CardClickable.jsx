@@ -14,7 +14,7 @@ export function CardClickable() {
 			color: rgb(var(--m3-scheme-on-surface));
 			transition: all 200ms;
 		}
-		.layer {
+		.CardClickable-layer {
 			position: absolute;
 			inset: 0;
 			border-radius: inherit;
@@ -50,16 +50,16 @@ export function CardClickable() {
 			button.type-elevated:hover {
 				box-shadow: var(--m3-util-elevation-2);
 			}
-			button:hover > .layer {
+			button:hover > .CardClickable-layer {
 				background-color: rgb(var(--m3-scheme-on-surface) / 0.08);
 			}
 		}
-		button:is(:focus-visible, :active) > .layer {
+		button:is(:focus-visible, :active) > .CardClickable-layer {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
 		}
 
 		@media print, (forced-colors: active) {
-			.layer {
+			.CardClickable-layer {
 				display: none;
 			}
 			.type-filled {
@@ -76,7 +76,7 @@ export function CardClickable() {
 	return (
 		<span class={cssClass}>
 			<button on:click={this["on:click"] || (() => { })} {...extraoptions} style={`display: ${display};`} class={`CardClickable-m3-container type-${type}`}>
-				<div class={`layer`}></div>
+				<div class={`CardClickable-layer`}></div>
 				{this.children}
 			</button>
 		</span >

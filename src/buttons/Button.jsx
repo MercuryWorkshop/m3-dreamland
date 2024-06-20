@@ -21,20 +21,20 @@ export function Button() {
 			position: relative;
 			overflow: hidden;
 		}
-		.layer {
+		.Button-layer {
 			position: absolute;
 			inset: 0;
 			transition: all 200ms;
 		}
 
-		.Button-m3-container > :global(*) {
+		.Button-m3-container > * {
 			flex-shrink: 0;
 		}
 		.icon-left {
 			padding-left: 1rem;
 			gap: 0.5rem;
 		}
-		.icon-left > :global(svg) {
+		.icon-left > svg {
 			width: 1.125rem;
 			height: 1.125rem;
 		}
@@ -42,7 +42,7 @@ export function Button() {
 			width: 2.5rem;
 			padding: 0;
 		}
-		.icon-full > :global(svg) {
+		.icon-full > svg {
 			width: 1.5rem;
 			height: 1.5rem;
 		}
@@ -91,7 +91,7 @@ export function Button() {
 			-webkit-tap-highlight-color: transparent;
 		}
 		@media (hover: hover) {
-			.Button-m3-container:enabled:hover > .layer {
+			.Button-m3-container:enabled:hover > .Button-layer {
 				background-color: rgb(var(--text) / 0.08);
 			}
 			.Button-m3-container:enabled.elevated:hover {
@@ -104,8 +104,8 @@ export function Button() {
 				box-shadow: var(--m3-util-elevation-1);
 			}
 		}
-		.Button-m3-container:enabled:focus-visible > .layer,
-		.Button-m3-container:enabled:active > .layer {
+		.Button-m3-container:enabled:focus-visible > .Button-layer,
+		.Button-m3-container:enabled:active > .Button-layer {
 			background-color: rgb(var(--text) / 0.12);
 		}
 
@@ -128,7 +128,7 @@ export function Button() {
 	return (
 		<span class={cssClass}>
 			<button {...(disabled ? { disabled: "" } : {})} class={`Button-m3-container m3-font-label-large ${type} icon-${icontype}`} style={`display: ${display};`} {...extraoptions} on:click={this["on:click"] || (() => { })}>
-				<div class={`layer`} />
+				<div class={`Button-layer`} />
 				{this.children}
 			</button>
 		</span>

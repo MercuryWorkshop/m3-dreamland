@@ -33,7 +33,7 @@ export function SegmentedButtonItem() {
 			color: rgb(var(--m3-scheme-on-surface) / 0.38);
 			cursor: auto;
 		}
-		.layer {
+		.SegmentedButtonItem-layer {
 			position: absolute;
 			inset: 0;
 			transition: all 200ms;
@@ -94,7 +94,7 @@ export function SegmentedButtonItem() {
 			-webkit-tap-highlight-color: transparent;
 		}
 		@media (hover: hover) {
-			input:not(:disabled) + label:hover > .layer {
+			input:not(:disabled) + label:hover > .SegmentedButtonItem-layer {
 				background-color: rgb(var(--text) / 0.08);
 			}
 		}
@@ -103,8 +103,8 @@ export function SegmentedButtonItem() {
 			background-color: rgb(var(--m3-scheme-secondary-container));
 			--text: var(--m3-scheme-on-secondary-container);
 		}
-		input:enabled:focus-visible + label > .layer,
-		input:enabled + label:active > .layer {
+		input:enabled:focus-visible + label > .SegmentedButtonItem-layer,
+		input:enabled + label:active > .SegmentedButtonItem-layer {
 			background-color: rgb(var(--text) / 0.12);
 		}
 	`;
@@ -113,7 +113,7 @@ export function SegmentedButtonItem() {
 		<span class={cssClass}>
 			<input type={type} id={input} name={name} checked={use(this.checked)} disabled={use(this.disabled)} />
 			<label style={`display: ${display}; overflow: hidden;`} for={input} class={`m3-font-label-large`} {...extraoptions}>
-				<div class="layer" />
+				<div class="SegmentedButtonItem-layer" />
 				{icon ?
 					<div class="custom icon">
 						<Icon icon={icon} />

@@ -27,7 +27,7 @@ export function Switch() {
 			-webkit-tap-highlight-color: transparent;
 			transition: all 300ms;
 		}
-		.layer {
+		.Switch-layer {
 			position: absolute;
 			width: 1rem;
 			height: 1rem;
@@ -45,14 +45,14 @@ export function Switch() {
 			align-items: center;
 			justify-content: center;
 		}
-		.layer > svg {
+		.Switch-layer > svg {
 			width: 1rem;
 			height: 1rem;
 			color: rgb(var(--m3-scheme-on-primary-container));
 			opacity: 0;
 			transition: opacity 300ms cubic-bezier(0.271, -0.011, 0, 1.449);
 		}
-		.layer::before {
+		.Switch-layer::before {
 			content: " ";
 			display: block;
 			position: absolute;
@@ -65,24 +65,24 @@ export function Switch() {
 			transition: all 200ms;
 		}
 		
-		.Switch-m3-container:hover > input:enabled + .layer,
-		.Switch-m3-container > input:enabled:is(:active, :focus-visible) + .layer {
+		.Switch-m3-container:hover > input:enabled + .Switch-layer,
+		.Switch-m3-container > input:enabled:is(:active, :focus-visible) + .Switch-layer {
 			background-color: rgb(var(--m3-scheme-on-surface-variant));
 		}
-		.Switch-m3-container:hover > input:enabled:checked + .layer,
-		.Switch-m3-container > input:enabled:checked:is(:active, :focus-visible) + .layer {
+		.Switch-m3-container:hover > input:enabled:checked + .Switch-layer,
+		.Switch-m3-container > input:enabled:checked:is(:active, :focus-visible) + .Switch-layer {
 			background-color: rgb(var(--m3-scheme-primary-container));
 		}
-		.Switch-m3-container:hover > input + .layer::before {
+		.Switch-m3-container:hover > input + .Switch-layer::before {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.08);
 		}
-		.Switch-m3-container:hover > input:checked + .layer::before {
+		.Switch-m3-container:hover > input:checked + .Switch-layer::before {
 			background-color: rgb(var(--m3-scheme-primary) / 0.08);
 		}
-		.Switch-m3-container > input:is(:active, :focus-visible) + .layer::before {
+		.Switch-m3-container > input:is(:active, :focus-visible) + .Switch-layer::before {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
 		}
-		.Switch-m3-container > input:checked:is(:active, :focus-visible) + .layer::before {
+		.Switch-m3-container > input:checked:is(:active, :focus-visible) + .Switch-layer::before {
 			background-color: rgb(var(--m3-scheme-primary) / 0.12);
 		}
 		
@@ -90,21 +90,21 @@ export function Switch() {
 			background-color: rgb(var(--m3-scheme-primary));
 			border-color: rgb(var(--m3-scheme-primary));
 		}
-		input:checked + .layer {
+		input:checked + .Switch-layer {
 			background-color: rgb(var(--m3-scheme-on-primary));
 			width: 1.5rem;
 			height: 1.5rem;
 			left: 1.5rem;
 		}
-		input:checked + .layer > svg {
+		input:checked + .Switch-layer > svg {
 			opacity: 1;
 		}
-		.Switch-m3-container:active > input:enabled + .layer {
+		.Switch-m3-container:active > input:enabled + .Switch-layer {
 			width: 1.75rem;
 			height: 1.75rem;
 			transform: translate(-0.375rem, -50%);
 		}
-		.Switch-m3-container:active > input:enabled:checked + .layer {
+		.Switch-m3-container:active > input:enabled:checked + .Switch-layer {
 			transform: translate(-0.125rem, -50%);
 		}
 
@@ -117,17 +117,17 @@ export function Switch() {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
 			border-color: transparent;
 		}
-		input:disabled + .layer {
+		input:disabled + .Switch-layer {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
 			cursor: auto;
 		}
-		input:disabled:checked + .layer {
+		input:disabled:checked + .Switch-layer {
 			background-color: rgb(var(--m3-scheme-surface));
 		}
-		input:disabled:checked + .layer > svg {
+		input:disabled:checked + .Switch-layer > svg {
 			color: rgb(var(--m3-scheme-on-surface) / 0.38);
 		}
-		input:disabled + .layer::before {
+		input:disabled + .Switch-layer::before {
 			display: none;
 		}
 		
@@ -139,14 +139,14 @@ export function Switch() {
 			input:checked {
 				background-color: canvastext !important;
 			}
-			.layer {
+			.Switch-layer {
 				background-color: canvastext !important;
 			}
-			input:checked + .layer {
+			input:checked + .Switch-layer {
 				background-color: canvas !important;
 			}
 			input:disabled,
-			input:disabled + .layer {
+			input:disabled + .Switch-layer {
 				opacity: 0.38;
 			}
 		}
@@ -175,7 +175,7 @@ export function Switch() {
 					if (e.code == "ArrowLeft") this.checked = false;
 					if (e.code == "ArrowRight") this.checked = true;
 				}} role={`switch`} type={`checkbox`} bind:checked={use(this.checked)} />
-				<div class="layer">
+				<div class="Switch-layer">
 					<Icon icon={iconCheck} />
 				</div>
 			</div>

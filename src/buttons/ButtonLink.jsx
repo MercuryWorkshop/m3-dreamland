@@ -21,7 +21,7 @@ export function ButtonLink() {
 			overflow: hidden;
 			user-select: none;
 		}
-		.layer {
+		.ButtonLink-layer {
 			position: absolute;
 			inset: 0;
 			transition: all 200ms;
@@ -82,7 +82,7 @@ export function ButtonLink() {
 			-webkit-tap-highlight-color: transparent;
 		}
 		@media (hover: hover) {
-			.ButtonLink-m3-container:hover > .layer {
+			.ButtonLink-m3-container:hover > .ButtonLink-layer {
 				background-color: rgb(var(--text) / 0.08);
 			}
 			.ButtonLink-m3-container.elevated:hover {
@@ -95,8 +95,8 @@ export function ButtonLink() {
 				box-shadow: var(--m3-util-elevation-1);
 			}
 		}
-		.ButtonLink-m3-container:focus-visible > .layer,
-		.ButtonLink-m3-container:active > .layer {
+		.ButtonLink-m3-container:focus-visible > .ButtonLink-layer,
+		.ButtonLink-m3-container:active > .ButtonLink-layer {
 			background-color: rgb(var(--text) / 0.12);
 		}
 
@@ -116,7 +116,7 @@ export function ButtonLink() {
 	return (
 		<span class={cssClass}>
 			<a href={href} style={`display: ${display};`} class={`ButtonLink-m3-container m3-font-label-large ${type} icon-${icontype}`} {...extraoptions}>
-				<div class={`layer`}></div>
+				<div class={`ButtonLink-layer`}></div>
 				{this.children}
 			</a>
 		</span>
