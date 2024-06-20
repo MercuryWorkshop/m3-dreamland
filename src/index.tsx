@@ -17,9 +17,9 @@ export { LinearProgressIndeterminate } from "./forms/LinearProgressIndeterminate
 
 export { Icon } from "./icon.tsx";
 
-export const Styles: Component<{ light: SerializedScheme, dark: SerializedScheme, extraStyles: boolean }, {}> = function() {
+export const Styles: Component<{ light: SerializedScheme, dark: SerializedScheme, disableExtraStyles: boolean | undefined }, {}> = function() {
 	this.mount = () => {
-		if (this.extraStyles) {
+		if (!this.disableExtraStyles) {
 			this.root.appendChild(h("style", [], `
 body {
 	font-family: var(--m3-font-body, var(--m3-font));
