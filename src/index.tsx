@@ -10,6 +10,10 @@ export { Card } from "./containers/Card.jsx";
 export { CardClickable } from "./containers/CardClickable.jsx";
 
 export { Switch } from "./forms/Switch.jsx";
+export { CircularProgress } from "./forms/CircularProgress.jsx";
+export { CircularProgressIndeterminate } from "./forms/CircularProgressIndeterminate.jsx";
+export { LinearProgress } from "./forms/LinearProgress.jsx";
+export { LinearProgressIndeterminate } from "./forms/LinearProgressIndeterminate.jsx";
 
 export { Icon } from "./icon.tsx";
 
@@ -183,7 +187,7 @@ or for very small text in the content body, such as captions. */
   font-weight: var(--m3-font-body-small-weight, 400);
 }
 /* Fix some browser stuff */
-[class*="-m3-container "] {
+[class*="-m3-container"] {
   box-sizing: border-box;
 }
 *,
@@ -191,8 +195,8 @@ or for very small text in the content body, such as captions. */
 *::after {
   box-sizing: inherit;
 }
-[class*="-m3-container "] a,
-a[class*="-m3-container "] {
+[class*="-m3-container"] a,
+a[class*="-m3-container"] {
   text-decoration: none;
 }
 	`));
