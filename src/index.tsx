@@ -14,6 +14,8 @@ export { CircularProgress } from "./forms/CircularProgress.jsx";
 export { CircularProgressIndeterminate } from "./forms/CircularProgressIndeterminate.jsx";
 export { LinearProgress } from "./forms/LinearProgress.jsx";
 export { LinearProgressIndeterminate } from "./forms/LinearProgressIndeterminate.jsx";
+export { CheckboxAnim } from "./forms/CheckboxAnim.jsx";
+export { Checkbox } from "./forms/Checkbox.jsx";
 
 export { Icon } from "./icon.tsx";
 
