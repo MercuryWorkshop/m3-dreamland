@@ -170,7 +170,7 @@ export function Switch() {
 	return (
 		<label class={cssClass}>
 			<div {...extrawrapperoptions} style={`display: ${display};`} class={`Switch-m3-container`} on:mousedown={((e) => { if (!disabled) { startX = e.clientX } })}>
-				<input {...extraoptions} {...(disabled ? { disabled: "" } : {})} on:keydown={(e) => {
+				<input {...extraoptions} bind:disabled={use(this.disabled)} on:keydown={(e) => {
 					if (e.code == "Enter") this.checked = !this.checked;
 					if (e.code == "ArrowLeft") this.checked = false;
 					if (e.code == "ArrowRight") this.checked = true;
