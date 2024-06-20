@@ -1,4 +1,4 @@
-import { Icon } from "../icon.jsx"
+import { Icon } from "../icon.tsx"
 import iconCheck from "@ktibow/iconset-material-symbols/check";
 
 export function Switch() {

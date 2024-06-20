@@ -8,6 +8,8 @@ export { CardClickable } from "./containers/CardClickable.jsx";
 
 export { Switch } from "./forms/Switch.jsx";
 
+export { Icon } from "./icon.tsx";
+
 export const Styles: Component<{ light: SerializedScheme, dark: SerializedScheme, extraStyles: boolean }, {}> = function() {
 	this.mount = () => {
 		if (this.extraStyles) {

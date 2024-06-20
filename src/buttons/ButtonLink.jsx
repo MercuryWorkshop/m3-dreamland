@@ -4,7 +4,7 @@ export function ButtonLink() {
 	const icontype = this.iconType || "none";
 	const type = this.type;
 	const href = this.href;
-	this.css = `
+	const cssClass = css`
 		--m3-button-shape: var(--m3-util-rounding-full);
 
 		.ButtonLink-m3-container {
@@ -27,7 +27,7 @@ export function ButtonLink() {
 			transition: all 200ms;
 		}
 
-		.ButtonLink-m3-container > :global(*) {
+		.ButtonLink-m3-container > * {
 			flex-shrink: 0;
 		}
 		.icon-left {
@@ -114,7 +114,7 @@ export function ButtonLink() {
 	`;
 	this._leak = true;
 	return (
-		<span>
+		<span class={cssClass}>
 			<a href={href} style={`display: ${display};`} class={`ButtonLink-m3-container m3-font-label-large ${type} icon-${icontype}`} {...extraoptions}>
 				<div class={`layer`}></div>
 				{this.children}
