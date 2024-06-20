@@ -5,7 +5,6 @@ export function Switch() {
 	const display = this.display || "inline-flex";
 	const extrawrapperoptions = this.extraWrapperOptions || {};
 	const extraoptions = this.extraOptions || {};
-	const checked = this.checked || false;
 	const disabled = this.disabled || false;
 	const cssClass = css`
 		--m3-switch-track-shape: var(--m3-util-rounding-full);
@@ -158,8 +157,8 @@ export function Switch() {
 	const handleMouseUp = (e) => {
 		if (!startX) return;
 		const distance = e.clientX - startX;
-		if (distance > 16 && !checked) checked = true;
-		if (distance < -16 && checked) checked = false;
+		if (distance > 16 && !this.checked) this.checked = true;
+		if (distance < -16 && this.checked) this.checked = false;
 		startX = undefined;
 	};
 	this._leak = true;
@@ -172,12 +171,12 @@ export function Switch() {
 		<label class={cssClass}>
 			<div {...extrawrapperoptions} style={`display: ${display};`} class={`Switch-m3-container`} on:mousedown={((e) => { if (!disabled) { startX = e.clientX } })}>
 				<input {...extraoptions} {...(disabled ? { disabled: "" } : {})} on:keydown={(e) => {
-					if (e.code == "Enter") checked = !checked;
-					if (e.code == "ArrowLeft") checked = false;
-					if (e.code == "ArrowRight") checked = true;
+					if (e.code == "Enter") this.checked = !this.checked;
+					if (e.code == "ArrowLeft") this.checked = false;
+					if (e.code == "ArrowRight") this.checked = true;
 				}} role={`switch`} type={`checkbox`} bind:checked={use(this.checked)} />
 				<div class="layer">
-					{h(Icon, { icon: iconCheck })}
+					<Icon icon={iconCheck} />
 				</div>
 			</div>
 		</label>
