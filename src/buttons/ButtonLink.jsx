@@ -34,7 +34,7 @@ export function ButtonLink() {
 			padding-left: 1rem;
 			gap: 0.5rem;
 		}
-		.icon-left > :global(svg) {
+		.icon-left > svg {
 			width: 1.125rem;
 			height: 1.125rem;
 		}
@@ -42,7 +42,7 @@ export function ButtonLink() {
 			width: 2.5rem;
 			padding: 0;
 		}
-		.icon-full > :global(svg) {
+		.icon-full > svg {
 			width: 1.5rem;
 			height: 1.5rem;
 		}

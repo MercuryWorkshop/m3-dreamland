@@ -6,6 +6,8 @@ export { ButtonLink } from "./buttons/ButtonLink.jsx";
 export { Card } from "./containers/Card.jsx";
 export { CardClickable } from "./containers/CardClickable.jsx";
 
+export { Switch } from "./forms/Switch.jsx";
+
 export const Styles: Component<{ light: SerializedScheme, dark: SerializedScheme, extraStyles: boolean }, {}> = function() {
 	this.mount = () => {
 		if (this.extraStyles) {
@@ -176,7 +178,7 @@ or for very small text in the content body, such as captions. */
   font-weight: var(--m3-font-body-small-weight, 400);
 }
 /* Fix some browser stuff */
-.m3-container {
+[class*="-m3-container "] {
   box-sizing: border-box;
 }
 *,
@@ -184,8 +186,8 @@ or for very small text in the content body, such as captions. */
 *::after {
   box-sizing: inherit;
 }
-.m3-container a,
-a.m3-container {
+[class*="-m3-container "] a,
+a[class*="-m3-container "] {
   text-decoration: none;
 }
 	`));

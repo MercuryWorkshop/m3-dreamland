@@ -20,9 +20,14 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "devDependencies": {
+    "@iconify/types": "^2.0.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "dreamland": "0.0.22-pre",
     "rollup": "^4.17.2",
     "rollup-plugin-jsx": "^1.0.3"
+  },
+  "dependencies": {
+    "@ktibow/iconset-material-symbols": "^0.0.1717653083"
   }
 }

@@ -1,9 +1,11 @@
 import jsx from 'rollup-plugin-jsx'
 import typescript from '@rollup/plugin-typescript'
+import nodeResolve from '@rollup/plugin-node-resolve';
 
 const commonPlugins = () => [
 	jsx({ factory: "h" }),
-	typescript()
+	typescript(),
+	nodeResolve()
 ];
 
 const configs = [
