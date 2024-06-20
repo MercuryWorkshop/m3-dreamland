@@ -1,0 +1,28 @@
+{
+  "name": "m3-dreamland",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "author": "r58playz",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -cw",
+    "postinstall": "npm run build"
+  },
+  "type": "module",
+  "license": "LGPL-3.0",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "browser": "dist/index.cjs",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "dreamland": "0.0.22-pre",
+    "rollup": "^4.17.2",
+    "rollup-plugin-jsx": "^1.0.3"
+  }
+}

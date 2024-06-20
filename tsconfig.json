@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "ES2020",
+		"jsx": "react",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "Fragment",
+		"types": [
+			"dreamland"
+		]
+	},
+	"include": [
+		"src"
+	]
+}
