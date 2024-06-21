@@ -22,7 +22,6 @@ export function ChipChooser() {
 							this.chosenOptions.includes(option.value)
 								? (this.chosenOptions = this.chosenOptions.filter((o) => o != option.value))
 								: (this.chosenOptions = [...this.chosenOptions, option.value])
-							console.log(this.chosenOptions);
 						}}>
 						{option.label}
 					</Chip>
