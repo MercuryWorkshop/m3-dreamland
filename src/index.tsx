@@ -24,6 +24,13 @@ export { RadioAnim3 } from "./forms/RadioAnim3.jsx";
 export { ChipChooser } from "./utils/ChipChooser.jsx";
 export { Divider } from "./utils/Divider.jsx";
 
+export { NavDrawer } from "./nav/NavDrawer.jsx";
+export { NavDrawerButton } from "./nav/NavDrawerButton.jsx";
+export { NavDrawerLink } from "./nav/NavDrawerLink.jsx";
+export { NavList } from "./nav/NavList.jsx";
+export { NavListButton } from "./nav/NavListButton.jsx";
+export { NavListLink } from "./nav/NavListLink.jsx";
+
 export { Icon } from "./icon.tsx";
 
 export const Styles: Component<{ light: SerializedScheme, dark: SerializedScheme, disableExtraStyles: boolean | undefined }, {}> = function() {
