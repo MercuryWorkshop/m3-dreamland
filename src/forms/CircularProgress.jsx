@@ -1,7 +1,6 @@
 export function CircularProgress() {
 	const display = this.display || "inline-flex";
 	const extraoptions = this.extraOptions || {};
-	const percent = this.percent;
 	const cssClass = css`
 		svg {
 			width: 3rem;
@@ -20,7 +19,7 @@ export function CircularProgress() {
 				viewBox="0 0 48 48"
 				xmlns="http://www.w3.org/2000/svg"
 				class="CircularProgress-m3-container"
-				style={`display: ${display}; --percent: ${percent}px`}
+				style={use(this.percent, x => `display: ${display}; --percent: ${x}px`)}
 				role="progressbar"
 				{...extraoptions}
 			>
