@@ -20,6 +20,7 @@ export { Chip } from "./forms/Chip.jsx";
 export { RadioAnim1 } from "./forms/RadioAnim1.jsx";
 export { RadioAnim2 } from "./forms/RadioAnim2.jsx";
 export { RadioAnim3 } from "./forms/RadioAnim3.jsx";
+export { TextField } from "./forms/TextField.jsx";
 
 export { ChipChooser } from "./utils/ChipChooser.jsx";
 export { Divider } from "./utils/Divider.jsx";
@@ -30,6 +31,7 @@ export { NavDrawerLink } from "./nav/NavDrawerLink.jsx";
 export { NavList } from "./nav/NavList.jsx";
 export { NavListButton } from "./nav/NavListButton.jsx";
 export { NavListLink } from "./nav/NavListLink.jsx";
+export { Tabs } from "./nav/Tabs.jsx";
 
 export { Icon } from "./icon.tsx";
 
