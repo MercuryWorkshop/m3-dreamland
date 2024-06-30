@@ -111,7 +111,7 @@ export function SegmentedButtonItem() {
 	this._leak = true;
 	return (
 		<span class={cssClass}>
-			<input type={type} id={input} name={name} checked={use(this.checked)} disabled={use(this.disabled)} />
+			<input type={type} id={input} name={name} bind:this={use(this.inner)} checked={use(this.checked)} disabled={use(this.disabled)} />
 			<label style={`display: ${display}; overflow: hidden;`} for={input} class={`m3-font-label-large`} {...extraoptions}>
 				<div class="SegmentedButtonItem-layer" />
 				{icon ?

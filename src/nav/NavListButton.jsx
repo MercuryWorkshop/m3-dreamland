@@ -56,6 +56,7 @@ export function NavListButton() {
 		}
 		p {
 			margin: 0;
+			width: 100%;
 			transition: color 200ms;
 		}
 		
