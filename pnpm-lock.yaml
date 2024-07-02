@@ -11,6 +11,9 @@ importers:
       '@ktibow/iconset-material-symbols':
         specifier: ^0.0.1717653083
         version: 0.0.1717653083
+      '@material/material-color-utilities':
+        specifier: ^0.3.0
+        version: 0.3.0
     devDependencies:
       '@iconify/types':
         specifier: ^2.0.0
@@ -168,6 +171,9 @@ packages:
   '@ktibow/iconset-material-symbols@0.0.1717653083':
     resolution: {integrity: sha512-BgBEmUTwJ6UCS4qb72ciB/JbJndnUG9sPaPqY9krai6YNsE2On7lw/uk79VSS47HXbwEGuxOE1oT2xIbNmYU6A==}
 
+  '@material/material-color-utilities@0.3.0':
+    resolution: {integrity: sha512-ztmtTd6xwnuh2/xu+Vb01btgV8SQWYCaK56CkRK8gEkWe5TuDyBcYJ0wgkMRn+2VcE9KUmhvkz+N9GHrqw/C0g==}
+
   dreamland@0.0.22-pre:
     resolution: {integrity: sha512-CKIg0reYAzh46fBi197enoUdkzVV/N8yNohpD/v7JiABnXdQm0qrWD1kB9dmOtz4uce9MVjMGwASomqs/bzAQQ==}
 
@@ -252,6 +258,8 @@ snapshots:
   '@ktibow/iconset-material-symbols@0.0.1717653083':
     dependencies:
       '@iconify/types': 2.0.0
+
+  '@material/material-color-utilities@0.3.0': {}
 
   dreamland@0.0.22-pre: {}
 
