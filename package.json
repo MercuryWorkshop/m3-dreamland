@@ -23,6 +23,7 @@
 	},
 	"dependencies": {
 		"@ktibow/iconset-material-symbols": "^0.0.1717653083",
-		"@material/material-color-utilities": "^0.3.0"
+		"@material/material-color-utilities": "^0.3.0",
+		"uuid": "^10.0.0"
 	}
 }

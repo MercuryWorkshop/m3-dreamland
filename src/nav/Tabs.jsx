@@ -1,8 +1,9 @@
 import { Icon } from "../icon.tsx";
+import { v4 as uuidv4 } from "uuid";
 
 export function Tabs() {
 	const display = this.display || "flex";
-	const name = crypto.randomUUID();
+	const name = uuidv4();
 	const cssClass = css`
 		
 		  .Tabs-m3-container {

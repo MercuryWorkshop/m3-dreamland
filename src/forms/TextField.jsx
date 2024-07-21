@@ -1,8 +1,9 @@
 import { Icon } from "../icon";
+import { v4 as uuidv4 } from "uuid";
 
 export function TextField() {
 	const display = this.display || "inline-flex";
-	const id = crypto.randomUUID();
+	const id = uuidv4();
 	const cssClass = css`
 		--m3-textfield-filled-shape: var(--m3-util-rounding-extra-small);
 
