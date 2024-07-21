@@ -5,8 +5,8 @@
 	"keywords": [],
 	"author": "r58playz",
 	"scripts": {
-		"build": "esbuild --bundle src/index.tsx --outfile=dist/index.js --format=esm",
-		"watch": "esbuild --bundle src/index.tsx --outfile=dist/index.js --format=esm --watch",
+		"build": "esbuild --bundle src/index.tsx --outfile=dist/index.js --format=esm --tsconfig=tsconfig.json",
+		"watch": "esbuild --bundle src/index.tsx --outfile=dist/index.js --format=esm --tsconfig=tsconfig.json --watch",
 		"postinstall": "npm run build"
 	},
 	"type": "module",
