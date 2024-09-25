@@ -4,7 +4,6 @@ export function NavListButton() {
 	const display = this.display || "flex";
 	const extraoptions = this.extraOptions || {};
 	const type = this.type;
-	const icon = this.icon;
 	const cssClass = css`
 		.NavListButton-m3-container {
 			flex-direction: column;
@@ -122,7 +121,7 @@ export function NavListButton() {
 				{...extraoptions}
 			>
 				<div class="icon-space">
-					<Icon icon={icon} />
+					<Icon bind:icon={use(this.icon)} />
 				</div>
 				<p class="m3-font-label-medium">{this.children}</p>
 			</button>
