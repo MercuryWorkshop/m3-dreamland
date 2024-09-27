@@ -136,7 +136,7 @@ export function Tabs() {
 					const id = name + x.value;
 					return (
 						<>
-							<input type="radio" name={name} id={id} value={x.value} on:change={() => { this.tab = x.value; }} checked={this.tab == x.value} {...this.extraOptions} />
+							<input type="radio" name={name} id={id} value={x.value} on:change={() => { this.tab = x.value; }} checked={use(this.tab, y => y == x.value)} {...this.extraOptions} />
 							<label for={id} class:tall={x.icon}>
 								{x.icon ?
 									<Icon icon={x.icon} /> : null}
