@@ -5,7 +5,6 @@ export function Tabs() {
 	const display = this.display || "flex";
 	const name = uuidv4();
 	const cssClass = css`
-		
 		  .Tabs-m3-container {
 		    position: relative;
 		    background-color: rgb(var(--m3-scheme-surface));
@@ -65,28 +64,11 @@ export function Tabs() {
 		    position: absolute;
 		    background-color: rgb(var(--m3-scheme-primary));
 		    width: calc(100% / var(--items));
+			left: calc(100% / var(--items) * var(--i));
 		    height: 0;
 		    bottom: 0;
 		    pointer-events: none;
 		    transition: all 200ms;
-		  }
-		  input:checked:nth-of-type(1) ~ .bar {
-		    left: 0;
-		  }
-		  input:checked:nth-of-type(2) ~ .bar {
-		    left: calc(100% / var(--items));
-		  }
-		  input:checked:nth-of-type(3) ~ .bar {
-		    left: calc(100% / var(--items) * 2);
-		  }
-		  input:checked:nth-of-type(4) ~ .bar {
-		    left: calc(100% / var(--items) * 3);
-		  }
-		  input:checked:nth-of-type(5) ~ .bar {
-		    left: calc(100% / var(--items) * 4);
-		  }
-		  input:checked:nth-of-type(-n + 5) ~ .bar {
-		    height: 0.125rem;
 		  }
 		
 		  .primary > label {
@@ -123,12 +105,15 @@ export function Tabs() {
 		
 	`;
 	this._leak = true;
+	useChange([use(this.items), use(this.tab)], () => {
+		this.tabidx = this.items.findIndex(i => i.value == this.tab);
+	})
 	return (
 		<span class={cssClass}>
 			<div
 				class="Tabs-m3-container"
 				class:primary={use(this.secondary, x => !x)}
-				style={use(this.items, x => `display: ${display}; --items: ${x.length};`)}
+				style={use`display: ${display}; --items: ${use(this.items, x => x.length)}; --i: ${use(this.tabidx)};`}
 				{...this.extraWrapperOptions}
 			>
 				<div class="divider" />
