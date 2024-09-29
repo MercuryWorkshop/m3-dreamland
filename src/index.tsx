@@ -24,6 +24,7 @@ export { RadioAnim1 } from "./forms/RadioAnim1.jsx";
 export { RadioAnim2 } from "./forms/RadioAnim2.jsx";
 export { RadioAnim3 } from "./forms/RadioAnim3.jsx";
 export { TextField } from "./forms/TextField.jsx";
+export { TextFieldMultiline } from "./forms/TextFieldMultiline.jsx";
 
 export { ChipChooser } from "./utils/ChipChooser.jsx";
 export { Divider } from "./utils/Divider.jsx";

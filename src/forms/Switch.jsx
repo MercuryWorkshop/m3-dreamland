@@ -5,7 +5,6 @@ export function Switch() {
 	const display = this.display || "inline-flex";
 	const extrawrapperoptions = this.extraWrapperOptions || {};
 	const extraoptions = this.extraOptions || {};
-	const disabled = this.disabled || false;
 	const cssClass = css`
 		--m3-switch-track-shape: var(--m3-util-rounding-full);
 		--m3-switch-handle-shape: var(--m3-util-rounding-full);
@@ -169,7 +168,7 @@ export function Switch() {
 
 	return (
 		<label class={cssClass}>
-			<div {...extrawrapperoptions} style={`display: ${display};`} class={`Switch-m3-container`} on:mousedown={((e) => { if (!disabled) { startX = e.clientX } })}>
+			<div {...extrawrapperoptions} style={`display: ${display};`} class={`Switch-m3-container`} on:mousedown={((e) => { if (!this.disabled) { startX = e.clientX } })}>
 				<input {...extraoptions} bind:disabled={use(this.disabled)} on:keydown={(e) => {
 					if (e.code == "Enter") this.checked = !this.checked;
 					if (e.code == "ArrowLeft") this.checked = false;
