@@ -138,6 +138,7 @@ export function TextFieldMultiline() {
 				this.root.firstElementChild.style.height = textarea.scrollHeight + "px";
 			};
 			this.root.addEventListener("input", update);
+			useChange([use(this.value)], update);
 		})
 		resize.observe(this.root.firstElementChild);
 	}
