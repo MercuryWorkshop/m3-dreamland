@@ -1,9 +1,25 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 
-export function NavListButton() {
-	const display = this.display || "flex";
-	const extraoptions = this.extraOptions || {};
-	const type = this.type;
+export const NavListButton: Component<{
+	type: "rail" | "bar" | "auto",
+	icon: IconifyIcon,
+
+	selected?: boolean,
+
+	"on:click": () => void,
+
+	display?: string,
+	extraOptions: any,
+}, {
+	children: string,
+}> = function() {
+	this.selected = this.selected || false;
+	this["on:click"] = this["on:click"] || (() => { });
+
+	this.display = this.display || "flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		.NavListButton-m3-container {
 			flex-direction: column;
@@ -111,14 +127,15 @@ export function NavListButton() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
 			<button
-				on:click={this["on:click"] || (() => { })}
-				class={`NavListButton-m3-container type-${type}`}
-				style={`display: ${display};`}
+				on:click={this["on:click"]}
+				class={use`NavListButton-m3-container type-${this.type}`}
+				style={use`display: ${this.display};`}
 				class:selected={use(this.selected)}
-				{...extraoptions}
+				{...this.extraOptions}
 			>
 				<div class="icon-space">
 					{/* @ts-expect-error ts limitation */}

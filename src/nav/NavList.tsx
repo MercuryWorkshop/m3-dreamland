@@ -1,7 +1,12 @@
-export function NavList() {
-	const display = this.display || "flex";
-	const extraoptions = this.extraOptions || {};
-	const type = this.type;
+export const NavList: Component<{
+	type: "rail" | "bar" | "auto",
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		position: relative;
 		flex-grow: 1;
@@ -26,8 +31,14 @@ export function NavList() {
 		}
 	`;
 	this._leak = true;
+
 	return (
-		<nav {...extraoptions} style={`display: ${display};`} class={`NavList-m3-container type-${type} ${cssClass}`}>
+		<nav
+			{...this.extraOptions}
+
+			style={use`display: ${this.display};`}
+			class={use`NavList-m3-container type-${this.type} ${cssClass}`}
+		>
 			{this.children}
 		</nav>
 	)

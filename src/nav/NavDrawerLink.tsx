@@ -1,9 +1,20 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 
-export function NavDrawerLink() {
-	const href = this.href;
-	const extraoptions = this.extraOptions || {};
-	const icon = this.icon;
+export const NavDrawerLink: Component<{
+	icon: IconifyIcon,
+	href: string,
+
+	selected?: boolean,
+
+	extraOptions: any,
+}, {
+	children: string,
+}> = function() {
+	this.selected = this.selected || false;
+
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		
 		  .destination {
@@ -64,11 +75,13 @@ export function NavDrawerLink() {
 		
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<a href={href} class="destination" class:selected={use(this.selected)} {...extraoptions}>
+			<a href={use(this.href)} class="destination" class:selected={use(this.selected)} {...this.extraOptions}>
 				<div class="NavDrawerLink-layer" />
-				<Icon icon={icon} />
+				{/* @ts-expect-error dl limitation */}
+				<Icon bind:icon={use(this.icon)} />
 				<span class="m3-font-label-large">{this.children}</span>
 			</a>
 		</span>

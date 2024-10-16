@@ -1,9 +1,29 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 import { v4 as uuidv4 } from "uuid";
 
-export function Tabs() {
-	const display = this.display || "flex";
+export type Item = { name: string, value: string, icon?: IconifyIcon };
+
+export const Tabs: Component<{
+	items: Item[],
+	tab: string,
+
+	secondary: boolean,
+
+	display?: string,
+	extraOptions: any,
+	extraWrapperOptions: any,
+}, {
+	tabidx: number,
+}> = function() {
+	this.secondary = false;
+
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+	this.extraWrapperOptions = this.extraWrapperOptions || {};
+
 	const name = uuidv4();
+
 	const cssClass = css`
 		  .Tabs-m3-container {
 		    position: relative;
@@ -105,7 +125,8 @@ export function Tabs() {
 		
 	`;
 	this._leak = true;
-	useChange([use(this.items), use(this.tab)], () => {
+
+	useChange([this.items, this.tab], () => {
 		this.tabidx = this.items.findIndex(i => i.value == this.tab);
 	})
 	return (
@@ -113,7 +134,7 @@ export function Tabs() {
 			<div
 				class="Tabs-m3-container"
 				class:primary={use(this.secondary, x => !x)}
-				style={use`display: ${display}; --items: ${use(this.items, x => x.length)}; --i: ${use(this.tabidx)};`}
+				style={use`display: ${this.display}; --items: ${use(this.items, x => x.length)}; --i: ${use(this.tabidx)};`}
 				{...this.extraWrapperOptions}
 			>
 				<div class="divider" />
@@ -121,7 +142,15 @@ export function Tabs() {
 					const id = name + x.value;
 					return (
 						<>
-							<input type="radio" name={name} id={id} value={x.value} on:change={() => { this.tab = x.value; }} checked={use(this.tab, y => y == x.value)} {...this.extraOptions} />
+							<input
+								type="radio"
+								name={name}
+								id={id}
+								value={x.value}
+								on:change={() => { this.tab = x.value; }}
+								checked={use(this.tab, y => y == x.value)}
+								{...this.extraOptions}
+							/>
 							<label for={id} class:tall={x.icon}>
 								{x.icon ?
 									<Icon icon={x.icon} /> : null}

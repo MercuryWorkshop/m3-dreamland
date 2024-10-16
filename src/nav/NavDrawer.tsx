@@ -1,6 +1,11 @@
-export function NavDrawer() {
-	const display = this.display || "flex";
-	const extraoptions = this.extraOptions || {};
+export const NavDrawer: Component<{
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		.NavDrawer-m3-container {
 			flex-direction: column;
@@ -10,9 +15,10 @@ export function NavDrawer() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<nav style={`display: ${display};`} class={`NavDrawer-m3-container`} {...extraoptions}>
+			<nav style={use`display: ${this.display};`} class="NavDrawer-m3-container" {...this.extraOptions}>
 				{this.children}
 			</nav>
 		</span>

@@ -1,8 +1,22 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 
-export function NavDrawerButton() {
-	const extraoptions = this.extraOptions || {};
-	const icon = this.icon;
+export const NavDrawerButton: Component<{
+	icon: IconifyIcon,
+
+	selected?: boolean,
+
+	"on:click": () => void,
+
+	extraOptions: any,
+}, {
+	children: string,
+}> = function() {
+	this.selected = this.selected || false;
+	this["on:click"] = this["on:click"] || (() => { });
+
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		.destination {
 			height: 3.5rem;
@@ -62,11 +76,13 @@ export function NavDrawerButton() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<button class="destination" class:selected={use(this.selected)} on:click={this["on:click"] || (() => { })} {...extraoptions}>
+			<button class="destination" class:selected={use(this.selected)} on:click={this["on:click"]} {...this.extraOptions}>
 				<div class="NavDrawerButton-layer" />
-				<Icon icon={icon} />
+				{/* @ts-expect-error dl limitation */}
+				<Icon bind:icon={use(this.icon)} />
 				<span class="m3-font-label-large">{this.children}</span>
 			</button>
 		</span>

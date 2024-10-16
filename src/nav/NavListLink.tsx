@@ -1,13 +1,28 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 
-export function NavListLink() {
-	const display = this.display || "flex";
-	const extraoptions = this.extraOptions || {};
-	const type = this.type;
-	const href = this.href;
-	const icon = this.icon;
+export const NavListButton: Component<{
+	type: "rail" | "bar" | "auto",
+	icon: IconifyIcon,
+	href: string,
+
+	selected?: boolean,
+
+	"on:click": () => void,
+
+	display?: string,
+	extraOptions: any,
+}, {
+	children: string,
+}> = function() {
+	this.selected = this.selected || false;
+	this["on:click"] = this["on:click"] || (() => { });
+
+	this.display = this.display || "flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
-		.m3-container {
+		.NavListButton-m3-container {
 			flex-direction: column;
 			height: 3.25rem;
 			gap: 0.25rem;
@@ -90,12 +105,12 @@ export function NavListLink() {
 		}
 		
 		@media (hover: hover) {
-			.m3-container:hover > .icon-space {
+			.NavListButton-m3-container:hover > .icon-space {
 				background-color: rgb(var(--text) / 0.08);
 			}
 		}
-		.m3-container:focus-visible > .icon-space,
-		.m3-container:active > .icon-space {
+		.NavListButton-m3-container:focus-visible > .icon-space,
+		.NavListButton-m3-container:active > .icon-space {
 			background-color: rgb(var(--text) / 0.12);
 		}
 
@@ -111,17 +126,19 @@ export function NavListLink() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
 			<a
-				class={`m3-container type-${type}`}
-				style={`display: ${display};`}
+				class={use`NavListButton-m3-container type-${this.type}`}
+				style={use`display: ${this.display};`}
 				class:selected={use(this.selected)}
-				href={href}
-				{...extraoptions}
+				href={use(this.href)}
+				{...this.extraOptions}
 			>
 				<div class="icon-space">
-					<Icon icon={icon} />
+					{/* @ts-expect-error dl limitation */}
+					<Icon bind:icon={use(this.icon)} />
 				</div>
 				<p class="m3-font-label-medium">{this.children}</p>
 			</a>
