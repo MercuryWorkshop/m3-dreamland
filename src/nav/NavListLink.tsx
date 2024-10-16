@@ -1,7 +1,7 @@
 import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 
-export const NavListButton: Component<{
+export const NavListLink: Component<{
 	type: "rail" | "bar" | "auto",
 	icon: IconifyIcon,
 	href: string,

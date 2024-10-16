@@ -13,32 +13,30 @@ export { FAB } from "./buttons/FAB";
 export { Card } from "./containers/Card";
 export { CardClickable } from "./containers/CardClickable";
 
-// here
+export { Switch } from "./forms/Switch";
+export { CircularProgress } from "./forms/CircularProgress";
+export { CircularProgressIndeterminate } from "./forms/CircularProgressIndeterminate";
+export { LinearProgress } from "./forms/LinearProgress";
+export { LinearProgressIndeterminate } from "./forms/LinearProgressIndeterminate";
+export { CheckboxAnim } from "./forms/CheckboxAnim";
+export { Checkbox } from "./forms/Checkbox";
+export { Chip } from "./forms/Chip";
+export { RadioAnim1 } from "./forms/RadioAnim1";
+export { RadioAnim2 } from "./forms/RadioAnim2";
+export { RadioAnim3 } from "./forms/RadioAnim3";
+export { TextField } from "./forms/TextField";
+export { TextFieldMultiline } from "./forms/TextFieldMultiline";
 
-export { Switch } from "./forms/Switch.jsx";
-export { CircularProgress } from "./forms/CircularProgress.jsx";
-export { CircularProgressIndeterminate } from "./forms/CircularProgressIndeterminate.jsx";
-export { LinearProgress } from "./forms/LinearProgress.jsx";
-export { LinearProgressIndeterminate } from "./forms/LinearProgressIndeterminate.jsx";
-export { CheckboxAnim } from "./forms/CheckboxAnim.jsx";
-export { Checkbox } from "./forms/Checkbox.jsx";
-export { Chip } from "./forms/Chip.jsx";
-export { RadioAnim1 } from "./forms/RadioAnim1.jsx";
-export { RadioAnim2 } from "./forms/RadioAnim2.jsx";
-export { RadioAnim3 } from "./forms/RadioAnim3.jsx";
-export { TextField } from "./forms/TextField.jsx";
-export { TextFieldMultiline } from "./forms/TextFieldMultiline.jsx";
+export { ChipChooser } from "./utils/ChipChooser";
+export { Divider } from "./utils/Divider";
 
-export { ChipChooser } from "./utils/ChipChooser.jsx";
-export { Divider } from "./utils/Divider.jsx";
-
-export { NavDrawer } from "./nav/NavDrawer.jsx";
-export { NavDrawerButton } from "./nav/NavDrawerButton.jsx";
-export { NavDrawerLink } from "./nav/NavDrawerLink.jsx";
-export { NavList } from "./nav/NavList.jsx";
-export { NavListButton } from "./nav/NavListButton.jsx";
-export { NavListLink } from "./nav/NavListLink.jsx";
-export { Tabs } from "./nav/Tabs.jsx";
+export { NavDrawer } from "./nav/NavDrawer";
+export { NavDrawerButton } from "./nav/NavDrawerButton";
+export { NavDrawerLink } from "./nav/NavDrawerLink";
+export { NavList } from "./nav/NavList";
+export { NavListButton } from "./nav/NavListButton";
+export { NavListLink } from "./nav/NavListLink";
+export { Tabs } from "./nav/Tabs";
 
 export { Icon } from "./icon";
 
