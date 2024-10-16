@@ -42,7 +42,13 @@ export { Tabs } from "./nav/Tabs.jsx";
 
 export { Icon } from "./icon";
 
-export const Styles: Component<{ light: SerializedScheme, dark: SerializedScheme, disableExtraStyles: boolean | undefined }, { gennedCssEl: HTMLElement }> = function() {
+export const Styles: Component<{
+	light: SerializedScheme,
+	dark: SerializedScheme,
+	disableExtraStyles?: boolean
+}, {
+	gennedCssEl: HTMLElement
+}> = function() {
 	this.gennedCssEl = h("style", [], genCSS(this.light, this.dark)) as HTMLElement;
 	useChange([this.light, this.dark], () => { this.gennedCssEl.innerText = genCSS(this.light, this.dark) });
 	this.mount = () => {
