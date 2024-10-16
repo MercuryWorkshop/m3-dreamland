@@ -4,7 +4,9 @@ export const CardClickable: Component<{
 
 	display?: string,
 	extraOptions: any,
-}, {}> = function() {
+}, {
+	children: any
+}> = function() {
 	this["on:click"] = this["on:click"] || (() => { });
 
 	this.display = this.display || "flex";

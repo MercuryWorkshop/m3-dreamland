@@ -6,12 +6,14 @@ export const Button: Component<{
 	display?: string,
 	extraOptions?: any,
 	"on:click"?: () => void,
-}, {}> = function() {
+}, {
+	children: string,
+}> = function() {
 	this.disabled = this.disabled || false;
 	this.iconType = this.iconType || "none";
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};
-	this["on:click"] = this["on:click"] || (()=>{});
+	this["on:click"] = this["on:click"] || (() => { });
 
 	const cssClass = css`
 		--m3-button-shape: var(--m3-util-rounding-full);

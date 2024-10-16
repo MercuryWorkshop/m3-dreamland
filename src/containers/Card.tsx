@@ -3,7 +3,9 @@ export const Card: Component<{
 
 	display?: string,
 	extraOptions: any,
-}, {}> = function() {
+}, {
+	children: any
+}> = function() {
 	this.display = this.display || "flex";
 	this.extraOptions = this.extraOptions || {};
 

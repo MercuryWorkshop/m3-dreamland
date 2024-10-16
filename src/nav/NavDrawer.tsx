@@ -2,7 +2,9 @@ export const NavDrawer: Component<{
 
 	display?: string,
 	extraOptions: any,
-}, {}> = function() {
+}, {
+	children: any
+}> = function() {
 	this.display = this.display || "flex";
 	this.extraOptions = this.extraOptions || {};
 

@@ -5,7 +5,9 @@ export const ButtonLink: Component<{
 	iconType?: "none" | "left" | "full",
 	display?: string,
 	extraOptions?: any,
-}, {}> = function() {
+}, {
+	children: string,
+}> = function() {
 	this.iconType = this.iconType || "none";
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};

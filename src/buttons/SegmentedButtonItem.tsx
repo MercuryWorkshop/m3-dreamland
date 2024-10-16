@@ -16,7 +16,9 @@ export const SegmentedButtonItem: Component<{
 
 	display?: string,
 	extraOptions: any,
-}, {}> = function() {
+}, {
+	children: string,
+}> = function() {
 	this.type = this.type || "radio";
 	this.checked = this.checked || false;
 	this.disabled = this.disabled || false;
