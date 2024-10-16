@@ -1,6 +1,11 @@
-export function LinearProgressIndeterminate() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const LinearProgressIndeterminate: Component<{
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		--m3-linear-progress-shape: var(--m3-util-rounding-full);
 		.LinearProgressIndeterminate-m3-container {
@@ -40,10 +45,17 @@ export function LinearProgressIndeterminate() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<div style={`display: ${display};`} {...extraoptions} role={`progressbar`} class={`LinearProgressIndeterminate-m3-container`}>
-				<div class={`percent`} />
+			<div
+				style={use`display: ${this.display};`}
+				{...this.extraOptions}
+
+				role="progressbar"
+				class="LinearProgressIndeterminate-m3-container"
+			>
+				<div class="percent" />
 			</div>
 		</span>
 	)

@@ -1,12 +1,29 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon"
 
-export function Chip() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
-	const type = this.type;
-	const icon = this.icon || null;
-	const trailingicon = this.trailingIcon || null;
-	const disabled = this.disabled || false;
+export const Chip: Component<{
+	type: "input" | "assist" | "general",
+	icon?: IconifyIcon | null,
+	trailingIcon?: IconifyIcon | null,
+	elevated?: boolean,
+	disabled?: boolean,
+	selected?: boolean,
+
+	"on:click"?: () => void,
+
+	display?: string,
+	extraOptions: any,
+}, {
+	children: string,
+}> = function() {
+	this.elevated = this.elevated || false;
+	this.selected = this.selected || false;
+	this.disabled = this.disabled || false;
+	this["on:click"] = this["on:click"] || (() => { });
+
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		--m3-chip-shape: var(--m3-util-rounding-small);
 
@@ -121,17 +138,28 @@ export function Chip() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<button class={`Chip-m3-container type-${type}`} class:elevated={use(this.elevated)} class:selected={use(this.selected)} disabled={disabled} style={`display: ${display}`} on:click={this["on:click"] || (() => { })} {...extraoptions}>
+			<button
+				class={use`Chip-m3-container type-${this.type}`}
+				style={use`display: ${this.display}`}
+
+				on:click={this["on:click"] || (() => { })}
+
+				class:elevated={use(this.elevated)}
+				class:selected={use(this.selected)}
+				disabled={use(this.disabled)}
+				{...this.extraOptions}
+			>
 				<div class="Chip-layer" />
-				{icon ?
-					<Icon icon={icon} class="leading" />
-					: null}
+				{use(this.icon, x => x ?
+					<Icon icon={x} class="leading" />
+					: null)}
 				<span class="m3-font-label-large">{this.children}</span>
-				{trailingicon ?
-					<Icon icon={trailingicon} class="trailing" />
-					: null}
+				{use(this.trailingIcon, x => x ?
+					<Icon icon={x} class="trailing" />
+					: null)}
 			</button>
 		</span>
 	)

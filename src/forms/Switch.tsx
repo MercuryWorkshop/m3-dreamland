@@ -1,10 +1,21 @@
 import { Icon } from "../icon"
 import iconCheck from "@ktibow/iconset-material-symbols/check";
 
-export function Switch() {
-	const display = this.display || "inline-flex";
-	const extrawrapperoptions = this.extraWrapperOptions || {};
-	const extraoptions = this.extraOptions || {};
+export const Switch: Component<{
+	checked?: boolean,
+	disabled?: boolean,
+
+	display?: string,
+	extraOptions: any,
+	extraWrapperOptions: any,
+}, {}> = function() {
+	this.checked = this.checked || false;
+	this.disabled = this.disabled || false;
+
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+	this.extraWrapperOptions = this.extraWrapperOptions || {};
+
 	const cssClass = css`
 		--m3-switch-track-shape: var(--m3-util-rounding-full);
 		--m3-switch-handle-shape: var(--m3-util-rounding-full);
@@ -151,9 +162,9 @@ export function Switch() {
 		}
 	`;
 
-	let startX;
+	let startX: number | undefined;
 
-	const handleMouseUp = (e) => {
+	const handleMouseUp = (e: MouseEvent) => {
 		if (!startX) return;
 		const distance = e.clientX - startX;
 		if (distance > 16 && !this.checked) this.checked = true;
@@ -168,12 +179,27 @@ export function Switch() {
 
 	return (
 		<label class={cssClass}>
-			<div {...extrawrapperoptions} style={`display: ${display};`} class={`Switch-m3-container`} on:mousedown={((e) => { if (!this.disabled) { startX = e.clientX } })}>
-				<input {...extraoptions} bind:disabled={use(this.disabled)} on:keydown={(e) => {
-					if (e.code == "Enter") this.checked = !this.checked;
-					if (e.code == "ArrowLeft") this.checked = false;
-					if (e.code == "ArrowRight") this.checked = true;
-				}} role={`switch`} type={`checkbox`} bind:checked={use(this.checked)} />
+			<div
+				style={use`display: ${this.display};`}
+				class="Switch-m3-container"
+				{...this.extraWrapperOptions}
+
+				on:mousedown={((e: MouseEvent) => { if (!this.disabled) { startX = e.clientX } })}
+			>
+				<input
+					{...this.extraOptions}
+					disabled={use(this.disabled)}
+					bind:checked={use(this.checked)}
+
+					on:keydown={(e: KeyboardEvent) => {
+						if (e.code == "Enter") this.checked = !this.checked;
+						if (e.code == "ArrowLeft") this.checked = false;
+						if (e.code == "ArrowRight") this.checked = true;
+					}}
+
+					role="switch"
+					type="checkbox"
+				/>
 				<div class="Switch-layer">
 					<Icon icon={iconCheck} />
 				</div>

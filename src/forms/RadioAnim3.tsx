@@ -1,6 +1,11 @@
-export function RadioAnim3() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const RadioAnim3: Component<{
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		.RadioAnim3-m3-container {
 			position: relative;
@@ -92,7 +97,12 @@ export function RadioAnim3() {
 	this._leak = true;
 	return (
 		<label class={cssClass}>
-			<div style={`display: ${display};`} {...extraoptions} class={`RadioAnim3-m3-container`}>
+			<div
+				style={use`display: ${this.display};`}
+				{...this.extraOptions}
+
+				class="RadioAnim3-m3-container"
+			>
 				{this.children}
 				<div class="RadioAnim3-layer" />
 			</div>

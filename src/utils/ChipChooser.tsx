@@ -1,7 +1,13 @@
+import { IconifyIcon } from "@iconify/types";
 import { Chip } from "../forms/Chip.jsx";
 
-export function ChipChooser() {
-	const options = this.options;
+export type Option = { label: string, value: string, icon?: IconifyIcon };
+
+export const ChipChooser: Component<{
+	options: Option[],
+	chosenOptions: string[],
+}, {}> = function() {
+
 	const cssClass = css`
 		.ChipChooser-m3-container {
 			display: flex;
@@ -10,10 +16,12 @@ export function ChipChooser() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<div class={`ChipChooser-m3-container`}>
-				{options.map((option) =>
+			<div class="ChipChooser-m3-container">
+				{use(this.options, x => x.map((option) =>
+					/* @ts-expect-error dl limitation */
 					<Chip
 						{...option}
 						type="input"
@@ -22,10 +30,11 @@ export function ChipChooser() {
 							this.chosenOptions.includes(option.value)
 								? (this.chosenOptions = this.chosenOptions.filter((o) => o != option.value))
 								: (this.chosenOptions = [...this.chosenOptions, option.value])
-						}}>
+						}}
+					>
 						{option.label}
 					</Chip>
-				)}
+				))}
 			</div>
 		</span >
 	)

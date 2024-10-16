@@ -2,7 +2,7 @@ import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 
 export const FAB: Component<{
-	icon?: IconifyIcon,
+	icon?: IconifyIcon | null,
 	text?: string,
 	"on:click"?: () => void,
 

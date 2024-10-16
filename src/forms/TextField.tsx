@@ -1,9 +1,36 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 import { v4 as uuidv4 } from "uuid";
 
-export function TextField() {
-	const display = this.display || "inline-flex";
+export const TextField: Component<{
+	name?: string,
+	value?: string,
+
+	error?: boolean,
+	disabled?: boolean,
+	required?: boolean,
+
+	leadingIcon?: IconifyIcon | null,
+	trailingIcon?: IconifyIcon | null,
+
+	"on:trailingclick"?: () => void,
+
+	display?: string,
+	extraOptions: any,
+	extraWrapperOptions: any,
+}, {}> = function() {
+	this.error = this.error || false;
+	this.disabled = this.disabled || false;
+	this.required = this.required || false;
+
+	this["on:trailingclick"] = this["on:trailingclick"] || (() => { });
+
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+	this.extraWrapperOptions = this.extraWrapperOptions || {};
+
 	const id = uuidv4();
+
 	const cssClass = css`
 		--m3-textfield-filled-shape: var(--m3-util-rounding-extra-small);
 
@@ -160,13 +187,14 @@ export function TextField() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
 			<div
 				class="TextField-m3-container"
-				class:leading_icon={this.leadingIcon}
+				class:leading_icon={use(this.leadingIcon, x => !!x)}
 				class:error={use(this.error)}
-				style={`display: ${display}`}
+				style={use`display: ${this.display}`}
 				{...this.extraWrapperOptions}
 			>
 				<input
@@ -180,14 +208,16 @@ export function TextField() {
 				/>
 				<label class="m3-font-body-large" for={id}>{use(this.name)}</label>
 				<div class="TextField-layer" />
-				{this.leadingIcon ?
-					<Icon icon={this.leadingIcon} class="leading" />
-					: null}
-				{this.trailingIcon ?
-					<button on:click={this["on:trailingclick"] || (() => { })} class="trailing">
-						<Icon icon={this.trailingIcon} />
+
+				{use(this.leadingIcon, x => x ?
+					<Icon icon={x} class="leading" />
+					: null)}
+
+				{use(this.trailingIcon, x => x ?
+					<button on:click={this["on:trailingclick"]} class="trailing">
+						<Icon icon={x} />
 					</button>
-					: null}
+					: null)}
 			</div>
 		</span>
 	)

@@ -1,6 +1,12 @@
-export function LinearProgress() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const LinearProgress: Component<{
+	percent: number,
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		--m3-linear-progress-shape: var(--m3-util-rounding-full);
 		.LinearProgress-m3-container {
@@ -27,10 +33,17 @@ export function LinearProgress() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<div class={`LinearProgress-m3-container`} {...extraoptions} style={`display: ${display};`} role={`progressbar`}>
-				<div style={use(this.percent, x=>`width: ${x}%;`)} class={`percent`} />
+			<div
+				style={use`display: ${this.display};`}
+				class="LinearProgress-m3-container"
+
+				role="progressbar"
+				{...this.extraOptions}
+			>
+				<div style={use`width: ${this.percent}%`} class="percent" />
 			</div>
 		</span>
 	)

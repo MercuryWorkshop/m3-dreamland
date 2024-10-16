@@ -1,6 +1,10 @@
-export function CheckboxAnim() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const CheckboxAnim: Component<{
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		.CheckboxAnim-m3-container {
 			position: relative;
@@ -96,9 +100,10 @@ export function CheckboxAnim() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<label class={cssClass}>
-			<div style={`display: ${display};`} {...extraoptions} class={`CheckboxAnim-m3-container`}>
+			<div style={use`display: ${this.display};`} {...this.extraOptions} class="CheckboxAnim-m3-container">
 				{this.children}
 				<div class="CheckboxAnim-layer">
 					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

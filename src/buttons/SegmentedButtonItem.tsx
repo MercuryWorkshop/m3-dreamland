@@ -12,7 +12,7 @@ export const SegmentedButtonItem: Component<{
 
 	inner?: HTMLInputElement,
 
-	icon?: IconifyIcon,
+	icon?: IconifyIcon | null,
 
 	display?: string,
 	extraOptions: any,

@@ -1,11 +1,33 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 import { v4 as uuidv4 } from "uuid";
 
-export function TextFieldMultiline() {
-	const display = this.display || "inline-flex";
-	const extraOptions = this.extraOptions || {};
-	const extraWrapperOptions = this.extraWrapperOptions || {};
+export const TextFieldMultiline: Component<{
+	name?: string,
+	value?: string,
+
+	error?: boolean,
+	disabled?: boolean,
+	required?: boolean,
+
+	leadingIcon?: IconifyIcon | null,
+	trailingIcon?: IconifyIcon | null,
+
+	display?: string,
+	extraOptions: any,
+	extraWrapperOptions: any,
+}, {}> = function() {
+	this.error = this.error || false;
+	this.disabled = this.disabled || false;
+	this.required = this.required || false;
+
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+	this.extraWrapperOptions = this.extraWrapperOptions || {};
+
 	const id = uuidv4();
+
+
 	const cssClass = css`
 		--m3-textfield-filled-shape: var(--m3-util-rounding-extra-small);
 
@@ -130,26 +152,29 @@ export function TextFieldMultiline() {
 		}
 	`;
 	this._leak = true;
+
 	this.mount = () => {
 		const resize = new ResizeObserver(() => {
 			const update = () => {
-				const textarea = this.root.firstElementChild.firstElementChild;
-				this.root.firstElementChild.style.height = "unset";
-				this.root.firstElementChild.style.height = textarea.scrollHeight + "px";
+				const root = this.root.firstElementChild as HTMLElement;
+				const textarea = root.firstElementChild;
+				root.style.height = "unset";
+				root.style.height = textarea.scrollHeight + "px";
 			};
 			this.root.addEventListener("input", update);
 			useChange([use(this.value)], update);
 		})
 		resize.observe(this.root.firstElementChild);
 	}
+
 	return (
 		<span class={cssClass}>
 			<div
 				class="TextFieldMultiline-m3-container"
-				class:leading_icon={use(this.leadingIcon)}
+				class:leading_icon={use(this.leadingIcon, x => !!x)}
 				class:error={use(this.error)}
-				style={`display: ${display}`}
-				{...extraWrapperOptions}
+				style={use`display: ${this.display}`}
+				{...this.extraWrapperOptions}
 			>
 				<textarea
 					class="m3-font-body-large"
@@ -158,13 +183,15 @@ export function TextFieldMultiline() {
 					id={id}
 					disabled={use(this.disabled)}
 					required={use(this.required)}
-					{...extraOptions}
+					{...this.extraOptions}
 				/>
+
 				<label class="m3-font-body-large" for={id}>{use(this.name)}</label>
 				<div class="TextFieldMultiline-layer" />
-				{this.leadingIcon ?
-					<Icon icon={this.leadingIcon} />
-					: null}
+
+				{use(this.leadingIcon, x => x ?
+					<Icon icon={x} class="leading" />
+					: null)}
 			</div>
 		</span>
 	)

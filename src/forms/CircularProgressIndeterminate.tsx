@@ -1,6 +1,11 @@
-export function CircularProgressIndeterminate() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const CircularProgressIndeterminate: Component<{
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		svg {
 			width: 3rem;
@@ -35,10 +40,29 @@ export function CircularProgressIndeterminate() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<svg role={`progressbar`} {...extraoptions} xmlns={`http://www.w3.org/2000/svg`} viewBox={`0 0 48 48`} class={`CircularProgressIndeterminate-m3-container`} style={`display: ${display};`}>
-				<circle stroke-dasharray={`125.66 125.66`} cy={`24`} stroke-linecap={`round`} r={`20`} fill={`none`} cx={`24`} stroke-width={`4`} stroke={`rgb(var(--m3-scheme-primary))`}></circle>
+			<svg
+				role="progressbar"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 48 48"
+				class="CircularProgressIndeterminate-m3-container"
+
+				style={use`display: ${this.display};`}
+				{...this.extraOptions}
+			>
+				<circle
+					cx="24"
+					cy="24"
+					r="20"
+
+					stroke="rgb(var(--m3-scheme-primary))"
+					stroke-width="4"
+					stroke-dasharray="125.66 125.66"
+					stroke-linecap="round"
+					fill="none"
+				></circle>
 			</svg>
 		</span>
 	)

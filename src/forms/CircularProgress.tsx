@@ -1,6 +1,12 @@
-export function CircularProgress() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const CircularProgress: Component<{
+	percent: number,
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		svg {
 			width: 3rem;
@@ -13,15 +19,16 @@ export function CircularProgress() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
 			<svg
 				viewBox="0 0 48 48"
 				xmlns="http://www.w3.org/2000/svg"
 				class="CircularProgress-m3-container"
-				style={use(this.percent, x => `display: ${display}; --percent: ${x}px`)}
+				style={use`display: ${this.display}; --percent: ${this.percent}px`}
 				role="progressbar"
-				{...extraoptions}
+				{...this.extraOptions}
 			>
 				<circle
 					cx="24"

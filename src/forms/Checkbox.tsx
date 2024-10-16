@@ -1,6 +1,10 @@
-export function Checkbox() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const Checkbox: Component<{
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		.Checkbox-m3-container {
 			position: relative;
@@ -87,10 +91,11 @@ export function Checkbox() {
 			}
 		}
 	`;
+
 	this._leak = true;
 	return (
 		<label class={cssClass}>
-			<div class={`Checkbox-m3-container`} style={`display: ${display};`} {...extraoptions}>
+			<div class="Checkbox-m3-container" style={use`display: ${this.display};`} {...this.extraOptions}>
 				{this.children}
 				<div class="Checkbox-layer">
 					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

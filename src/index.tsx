@@ -10,8 +10,8 @@ export { SegmentedButtonContainer } from "./buttons/SegmentedButtonContainer";
 export { SegmentedButtonItem } from "./buttons/SegmentedButtonItem";
 export { FAB } from "./buttons/FAB";
 
-export { Card } from "./containers/Card.jsx";
-export { CardClickable } from "./containers/CardClickable.jsx";
+export { Card } from "./containers/Card";
+export { CardClickable } from "./containers/CardClickable";
 
 // here
 

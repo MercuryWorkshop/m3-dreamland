@@ -1,4 +1,4 @@
-export function Divider() {
+export const Divider: Component<{ inset?: boolean }, {}> = function() {
 	const cssClass = css`
 		hr {
 			margin: 0;
@@ -12,6 +12,7 @@ export function Divider() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
 			<hr class:inset={use(this.inset)} />
