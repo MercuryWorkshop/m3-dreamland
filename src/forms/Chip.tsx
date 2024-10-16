@@ -1,4 +1,4 @@
-import { Icon } from "../icon.tsx"
+import { Icon } from "../icon"
 
 export function Chip() {
 	const display = this.display || "inline-flex";

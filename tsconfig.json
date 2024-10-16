@@ -1,13 +1,12 @@
 {
 	"compilerOptions": {
+		"declaration": true,
 		"target": "ES2020",
-		"module": "nodenext",
+		"moduleResolution": "node",
+		"module": "esnext",
 		"jsx": "react",
 		"jsxFactory": "h",
-		"jsxFragmentFactory": "Fragment",
-		"types": [
-			"dreamland"
-		]
+		"jsxFragmentFactory": "Fragment"
 	},
 	"include": [
 		"src"

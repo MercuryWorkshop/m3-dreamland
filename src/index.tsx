@@ -1,16 +1,19 @@
-import { SerializedScheme, genCSS } from "./utils.js";
+import { SerializedScheme, genCSS } from "./utils";
 
-export { SerializedScheme, serializeScheme, genScheme, genCSS } from "./utils.js";
+export { SerializedScheme, serializeScheme, genScheme, genCSS } from "./utils";
+
 export { argbFromHex, hexFromArgb, sourceColorFromImage } from "@material/material-color-utilities";
 
-export { Button } from "./buttons/Button.jsx";
-export { ButtonLink } from "./buttons/ButtonLink.jsx";
-export { SegmentedButtonContainer } from "./buttons/SegmentedButtonContainer.jsx";
-export { SegmentedButtonItem } from "./buttons/SegmentedButtonItem.jsx";
-export { FAB } from "./buttons/FAB.jsx";
+export { Button } from "./buttons/Button";
+export { ButtonLink } from "./buttons/ButtonLink";
+export { SegmentedButtonContainer } from "./buttons/SegmentedButtonContainer";
+export { SegmentedButtonItem } from "./buttons/SegmentedButtonItem";
+export { FAB } from "./buttons/FAB";
 
 export { Card } from "./containers/Card.jsx";
 export { CardClickable } from "./containers/CardClickable.jsx";
+
+// here
 
 export { Switch } from "./forms/Switch.jsx";
 export { CircularProgress } from "./forms/CircularProgress.jsx";
@@ -37,11 +40,11 @@ export { NavListButton } from "./nav/NavListButton.jsx";
 export { NavListLink } from "./nav/NavListLink.jsx";
 export { Tabs } from "./nav/Tabs.jsx";
 
-export { Icon } from "./icon.jsx";
+export { Icon } from "./icon";
 
 export const Styles: Component<{ light: SerializedScheme, dark: SerializedScheme, disableExtraStyles: boolean | undefined }, { gennedCssEl: HTMLElement }> = function() {
 	this.gennedCssEl = h("style", [], genCSS(this.light, this.dark)) as HTMLElement;
-	useChange([this.light, this.dark], ()=>{this.gennedCssEl.innerText = genCSS(this.light, this.dark)});
+	useChange([this.light, this.dark], () => { this.gennedCssEl.innerText = genCSS(this.light, this.dark) });
 	this.mount = () => {
 		if (!this.disableExtraStyles) {
 			this.root.appendChild(h("style", [], `

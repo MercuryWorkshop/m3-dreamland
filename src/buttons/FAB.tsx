@@ -1,13 +1,31 @@
+import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 
-export function FAB() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
-	const color = this.color || "primary";
-	const size = this.size || "normal";
-	const elevation = this.elevation || "normal";
-	const icon = this.icon || undefined;
-	const text = this.text || undefined;
+export const FAB: Component<{
+	icon?: IconifyIcon,
+	text?: string,
+	"on:click"?: () => void,
+
+	color?: "primary" | "surface" | "secondary" | "tertiary",
+	size?: "small" | "normal" | "large",
+	elevation?: "normal" | "lowered" | "none",
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.color = this.color || "primary";
+	this.size = this.size || "normal";
+	this.elevation = this.elevation || "normal";
+	this["on:click"] = this["on:click"] || (() => { });
+
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
+	useChange([this.size, this.icon, this.text], () => {
+		if (!this.icon && !this.text) console.warn("[m3-dreamland]: you need something in a FAB");
+		if (this.size !== "normal" && this.text) console.warn("[m3-dreamland]: extended fabs are supposed to use size normal");
+	});
+
 	const cssClass = css`
 		--m3-fab-small-shape: var(--m3-util-rounding-small);
 		--m3-fab-normal-shape: var(--m3-util-rounding-large);
@@ -126,14 +144,22 @@ export function FAB() {
 		}
 		
 	`;
+
 	this._leak = true;
 	return (
 		<span class={cssClass}>
-			<button {...extraoptions} on:click={this["on:click"] || (() => { })} class={`FAB-m3-container m3-font-label-large color-${color} size-${size} elevation-${elevation}`} style={`display: ${display};`}>
+			<button
+				class={use`FAB-m3-container m3-font-label-large color-${this.color} size-${this.size} elevation-${this.elevation}`}
+				style={use`display: ${this.display};`}
+
+				on:click={this["on:click"]}
+
+				{...this.extraOptions}
+			>
 				<div class={`FAB-layer`} />
-				{icon ?
-					<Icon icon={icon} /> : null}
-				{text ? text : null}
+				{use(this.icon, x => x ?
+					<Icon icon={this.icon} /> : null)}
+				{use(this.text, x => x ? x : null)}
 			</button>
 		</span>
 	)

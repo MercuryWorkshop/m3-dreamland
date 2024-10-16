@@ -1,7 +1,15 @@
-export function CardClickable() {
-	const display = this.display || "flex";
-	const extraoptions = this.extraOptions || {};
-	const type = this.type;
+export const CardClickable: Component<{
+	type: "filled" | "elevated" | "outlined",
+	"on:click"?: () => void,
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this["on:click"] = this["on:click"] || (() => { });
+
+	this.display = this.display || "flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		--m3-card-shape: var(--m3-util-rounding-medium);
 		.CardClickable-m3-container {
@@ -73,9 +81,16 @@ export function CardClickable() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<button on:click={this["on:click"] || (() => { })} {...extraoptions} style={`display: ${display};`} class={`CardClickable-m3-container type-${type}`}>
+			<button
+				style={use`display: ${this.display};`}
+				class={use`CardClickable-m3-container type-${this.type}`}
+
+				on:click={this["on:click"]}
+				{...this.extraOptions}
+			>
 				<div class={`CardClickable-layer`}></div>
 				{this.children}
 			</button>

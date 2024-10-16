@@ -1,13 +1,30 @@
-import { Icon } from "../icon.tsx"
-import iconCheck from "@ktibow/iconset-material-symbols/check.js"
+import { IconifyIcon } from "@iconify/types";
+import { Icon } from "../icon"
+import iconCheck from "@ktibow/iconset-material-symbols/check"
 
-export function SegmentedButtonItem() {
-	const display = this.display || "flex";
-	const extraoptions = this.extraOptions || {};
-	const input = this.input;
-	const icon = this.icon || undefined;
-	const type = this.type || "radio";
-	const name = this.name;
+export const SegmentedButtonItem: Component<{
+	type?: "radio" | "checkbox",
+	input: string,
+	name: string,
+	checked?: boolean,
+	disabled?: boolean,
+	extraInputOptions: any,
+
+	inner?: HTMLInputElement,
+
+	icon?: IconifyIcon,
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.type = this.type || "radio";
+	this.checked = this.checked || false;
+	this.disabled = this.disabled || false;
+	this.extraInputOptions = this.extraInputOptions || {};
+
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		label {
 			padding: 0 1rem;
@@ -109,22 +126,35 @@ export function SegmentedButtonItem() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<input type={type} id={input} name={name} bind:this={use(this.inner)} checked={use(this.checked)} disabled={use(this.disabled)} />
-			<label style={`display: ${display}; overflow: hidden;`} for={input} class={`m3-font-label-large`} {...extraoptions}>
+			<input
+				type={use(this.type)}
+				id={use(this.input)}
+				name={use(this.name)}
+				bind:this={use(this.inner)}
+				checked={use(this.checked)}
+				disabled={use(this.disabled)}
+			/>
+			<label
+				style={use`display: ${this.display}; overflow: hidden;`}
+				for={use(this.input)}
+				class="m3-font-label-large"
+				{...this.extraOptions}
+			>
 				<div class="SegmentedButtonItem-layer" />
-				{icon ?
+				{use(this.icon, x => x ?
 					<div class="custom icon">
-						<Icon icon={icon} />
+						<Icon icon={x} />
 					</div> : null
-				}
+				)}
 				<div class="check icon">
 					<Icon icon={iconCheck} />
 				</div>
 				<div class="start-pad pad" />
 				{this.children}
-				{!icon ? <div class="end-pad pad" /> : null}
+				{use(this.icon, x => !x ? <div class="end-pad pad" /> : null)}
 			</label>
 		</span>
 	)

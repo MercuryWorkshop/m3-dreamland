@@ -1,6 +1,10 @@
-export function SegmentedButtonContainer() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
+export const SegmentedButtonContainer: Component<{
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		--m3-segmented-button-shape: var(--m3-util-rounding-full);
 		  
@@ -17,9 +21,10 @@ export function SegmentedButtonContainer() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<div class={`SegmentedButtonContainer-m3-container`} style={`display: ${display};`} {...extraoptions}>
+			<div class={`SegmentedButtonContainer-m3-container`} style={use`display: ${this.display};`} {...this.extraOptions}>
 				{this.children}
 			</div>
 		</span>

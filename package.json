@@ -5,8 +5,8 @@
 	"keywords": [],
 	"author": "r58playz",
 	"scripts": {
-		"build": "esbuild --bundle src/index.tsx --outfile=dist/index.js --format=esm --tsconfig=tsconfig.json",
-		"watch": "esbuild --bundle src/index.tsx --outfile=dist/index.js --format=esm --tsconfig=tsconfig.json --watch",
+		"build": "rollup -c",
+		"watch": "rollup -cw",
 		"postinstall": "npm run build"
 	},
 	"type": "module",
@@ -15,14 +15,16 @@
 		"import": "./dist/index.js"
 	},
 	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"types": "dist/indexOut.d.ts",
 	"devDependencies": {
 		"@iconify/types": "^2.0.0",
-		"dreamland": "0.0.22-pre",
-		"esbuild": "^0.21.5"
+		"@rollup/plugin-node-resolve": "^15.3.0",
+		"rollup": "^4.24.0",
+		"rollup-plugin-dts": "^6.1.1",
+		"rollup-plugin-typescript2": "^0.36.0"
 	},
 	"dependencies": {
-		"@ktibow/iconset-material-symbols": "^0.0.1717653083",
+		"@ktibow/iconset-material-symbols": "^0.0.1728668628",
 		"@material/material-color-utilities": "^0.3.0",
 		"uuid": "^10.0.0"
 	}

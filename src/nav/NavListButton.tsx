@@ -121,6 +121,7 @@ export function NavListButton() {
 				{...extraoptions}
 			>
 				<div class="icon-space">
+					{/* @ts-expect-error ts limitation */}
 					<Icon bind:icon={use(this.icon)} />
 				</div>
 				<p class="m3-font-label-medium">{this.children}</p>

@@ -1,7 +1,12 @@
-export function Card() {
-	const display = this.display || "flex";
-	const extraoptions = this.extraOptions || {};
-	const type = this.type;
+export const Card: Component<{
+	type: "filled" | "elevated" | "outlined",
+
+	display?: string,
+	extraOptions: any,
+}, {}> = function() {
+	this.display = this.display || "flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		--m3-card-shape: var(--m3-util-rounding-medium);
 
@@ -40,9 +45,10 @@ export function Card() {
 		}
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<div {...extraoptions} class={`Card-m3-container type-${type}`} style={`display: ${display};`}>
+			<div {...this.extraOptions} class={use`Card-m3-container type-${this.type}`} style={use`display: ${this.display};`}>
 				{this.children}
 			</div>
 		</span>

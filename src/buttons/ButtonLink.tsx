@@ -1,9 +1,15 @@
-export function ButtonLink() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
-	const icontype = this.iconType || "none";
-	const type = this.type;
-	const href = this.href;
+export const ButtonLink: Component<{
+	type: "elevated" | "filled" | "tonal" | "outlined" | "text",
+	href: string,
+
+	iconType?: "none" | "left" | "full",
+	display?: string,
+	extraOptions?: any,
+}, {}> = function() {
+	this.iconType = this.iconType || "none";
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+
 	const cssClass = css`
 		--m3-button-shape: var(--m3-util-rounding-full);
 
@@ -112,10 +118,17 @@ export function ButtonLink() {
 		}
 
 	`;
+
 	this._leak = true;
 	return (
 		<span class={cssClass}>
-			<a href={href} style={`display: ${display};`} class={`ButtonLink-m3-container m3-font-label-large ${type} icon-${icontype}`} {...extraoptions}>
+			<a
+				style={use`display: ${this.display};`}
+				class={use`ButtonLink-m3-container m3-font-label-large ${this.type} icon-${this.iconType}`}
+
+				href={use(this.href)}
+				{...this.extraOptions}
+			>
 				<div class={`ButtonLink-layer`}></div>
 				{this.children}
 			</a>

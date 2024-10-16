@@ -1,9 +1,18 @@
-export function Button() {
-	const display = this.display || "inline-flex";
-	const extraoptions = this.extraOptions || {};
-	const icontype = this.iconType || "none";
-	const type = this.type;
-	const disabled = this.disabled || false;
+export const Button: Component<{
+	type: "elevated" | "filled" | "tonal" | "outlined" | "text",
+
+	disabled?: boolean,
+	iconType?: "none" | "left" | "full",
+	display?: string,
+	extraOptions?: any,
+	"on:click"?: () => void,
+}, {}> = function() {
+	this.disabled = this.disabled || false;
+	this.iconType = this.iconType || "none";
+	this.display = this.display || "inline-flex";
+	this.extraOptions = this.extraOptions || {};
+	this["on:click"] = this["on:click"] || (()=>{});
+
 	const cssClass = css`
 		--m3-button-shape: var(--m3-util-rounding-full);
 		  
@@ -125,10 +134,19 @@ export function Button() {
 		
 	`;
 	this._leak = true;
+
 	return (
 		<span class={cssClass}>
-			<button {...(disabled ? { disabled: "" } : {})} class={`Button-m3-container m3-font-label-large ${type} icon-${icontype}`} style={`display: ${display};`} {...extraoptions} on:click={this["on:click"] || (() => { })}>
-				<div class={`Button-layer`} />
+			<button
+				class={use`Button-m3-container m3-font-label-large ${this.type} icon-${this.iconType}`}
+				style={use`display: ${this.display};`}
+
+				disabled={use(this.disabled)}
+				{...this.extraOptions}
+
+				on:click={this["on:click"]}
+			>
+				<div class="Button-layer" />
 				{this.children}
 			</button>
 		</span>
