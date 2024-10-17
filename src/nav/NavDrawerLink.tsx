@@ -7,7 +7,7 @@ export const NavDrawerLink: Component<{
 
 	selected?: boolean,
 
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: string,
 }> = function() {

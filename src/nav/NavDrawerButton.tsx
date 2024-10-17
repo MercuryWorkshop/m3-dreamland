@@ -8,7 +8,7 @@ export const NavDrawerButton: Component<{
 
 	"on:click": () => void,
 
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: string,
 }> = function() {

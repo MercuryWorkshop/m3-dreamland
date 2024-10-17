@@ -11,7 +11,7 @@ export const Tabs: Component<{
 	secondary: boolean,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 	extraWrapperOptions: any,
 }, {
 	tabidx: number,

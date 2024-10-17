@@ -1,6 +1,6 @@
 export const SegmentedButtonContainer: Component<{
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: any,
 }> = function() {

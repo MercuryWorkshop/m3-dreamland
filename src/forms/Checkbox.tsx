@@ -1,6 +1,6 @@
 export const Checkbox: Component<{
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: HTMLInputElement,
 }> = function() {

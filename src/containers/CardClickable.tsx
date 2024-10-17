@@ -3,7 +3,7 @@ export const CardClickable: Component<{
 	"on:click"?: () => void,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: any
 }> = function() {

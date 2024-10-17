@@ -2,7 +2,7 @@ export const NavList: Component<{
 	type: "rail" | "bar" | "auto",
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: any
 }> = function() {

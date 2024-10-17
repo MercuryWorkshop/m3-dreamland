@@ -1,7 +1,7 @@
 export const LinearProgressIndeterminate: Component<{
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {}> = function() {
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};

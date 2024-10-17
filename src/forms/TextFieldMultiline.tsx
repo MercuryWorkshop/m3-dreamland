@@ -14,7 +14,7 @@ export const TextFieldMultiline: Component<{
 	trailingIcon?: IconifyIcon | null,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 	extraWrapperOptions: any,
 }, {}> = function() {
 	this.error = this.error || false;

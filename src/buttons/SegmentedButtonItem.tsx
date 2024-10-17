@@ -15,7 +15,7 @@ export const SegmentedButtonItem: Component<{
 	icon?: IconifyIcon | null,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: string,
 }> = function() {

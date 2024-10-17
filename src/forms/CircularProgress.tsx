@@ -2,7 +2,7 @@ export const CircularProgress: Component<{
 	percent: number,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {}> = function() {
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};

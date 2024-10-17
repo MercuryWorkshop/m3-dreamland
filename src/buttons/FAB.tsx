@@ -11,7 +11,7 @@ export const FAB: Component<{
 	elevation?: "normal" | "lowered" | "none",
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {}> = function() {
 	this.color = this.color || "primary";
 	this.size = this.size || "normal";

@@ -6,7 +6,7 @@ export const Switch: Component<{
 	disabled?: boolean,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 	extraWrapperOptions: any,
 }, {}> = function() {
 	this.checked = this.checked || false;

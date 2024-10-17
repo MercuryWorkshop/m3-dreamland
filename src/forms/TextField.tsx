@@ -16,7 +16,7 @@ export const TextField: Component<{
 	"on:trailingclick"?: () => void,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 	extraWrapperOptions: any,
 }, {}> = function() {
 	this.error = this.error || false;

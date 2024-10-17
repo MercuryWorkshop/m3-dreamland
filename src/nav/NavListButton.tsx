@@ -10,7 +10,7 @@ export const NavListButton: Component<{
 	"on:click": () => void,
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: string,
 }> = function() {

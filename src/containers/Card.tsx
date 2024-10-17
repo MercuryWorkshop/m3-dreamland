@@ -2,7 +2,7 @@ export const Card: Component<{
 	type: "filled" | "elevated" | "outlined",
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: any
 }> = function() {

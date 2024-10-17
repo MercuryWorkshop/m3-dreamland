@@ -1,7 +1,7 @@
 export const RadioAnim2: Component<{
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: HTMLInputElement,
 }> = function() {

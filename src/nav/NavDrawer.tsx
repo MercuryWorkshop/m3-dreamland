@@ -1,7 +1,7 @@
 export const NavDrawer: Component<{
 
 	display?: string,
-	extraOptions: any,
+	extraOptions?: any,
 }, {
 	children: any
 }> = function() {
