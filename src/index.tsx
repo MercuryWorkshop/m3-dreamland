@@ -36,7 +36,7 @@ export { NavDrawerLink } from "./nav/NavDrawerLink";
 export { NavList } from "./nav/NavList";
 export { NavListButton } from "./nav/NavListButton";
 export { NavListLink } from "./nav/NavListLink";
-export { Tabs } from "./nav/Tabs";
+export { Tabs, TabsItem } from "./nav/Tabs";
 
 export { Icon } from "./icon";
 

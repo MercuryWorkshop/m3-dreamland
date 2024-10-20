@@ -2,13 +2,13 @@ import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 import { v4 as uuidv4 } from "uuid";
 
-export type Item = { name: string, value: string, icon?: IconifyIcon };
+export type TabsItem = { name: string, value: string, icon?: IconifyIcon };
 
 export const Tabs: Component<{
-	items: Item[],
+	items: TabsItem[],
 	tab: string,
 
-	secondary: boolean,
+	secondary?: boolean,
 
 	display?: string,
 	extraOptions?: any,
@@ -17,7 +17,7 @@ export const Tabs: Component<{
 	tabidx: number,
 	_leak: true,
 }> = function() {
-	this.secondary = false;
+	this.secondary = this.secondary || false;
 
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};
