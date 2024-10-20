@@ -7,7 +7,7 @@ export const NavListButton: Component<{
 
 	selected?: boolean,
 
-	"on:click": () => void,
+	"on:click"?: () => void,
 
 	display?: string,
 	extraOptions?: any,

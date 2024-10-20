@@ -9,7 +9,6 @@ export const ChipChooser: Component<{
 }, {
 	_leak: true,
 }> = function() {
-
 	const cssClass = css`
 		.ChipChooser-m3-container {
 			display: flex;
@@ -26,7 +25,7 @@ export const ChipChooser: Component<{
 					<Chip
 						{...option}
 						type="input"
-						bind:selected={use(this.chosenOptions, t => t.includes(option.value))}
+						selected={use(this.chosenOptions, t => t.includes(option.value))}
 						on:click={() => {
 							this.chosenOptions.includes(option.value)
 								? (this.chosenOptions = this.chosenOptions.filter((o) => o != option.value))
@@ -37,6 +36,6 @@ export const ChipChooser: Component<{
 					</Chip>
 				))}
 			</div>
-		</span >
+		</span>
 	)
 }

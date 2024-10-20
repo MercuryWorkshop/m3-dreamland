@@ -8,7 +8,7 @@ export const SegmentedButtonItem: Component<{
 	name: string,
 	checked?: boolean,
 	disabled?: boolean,
-	extraInputOptions: any,
+	extraInputOptions?: any,
 
 	inner?: HTMLInputElement,
 
