@@ -2,7 +2,7 @@ export const Checkbox: Component<{
 	display?: string,
 	extraOptions?: any,
 }, {
-	children: HTMLInputElement,
+	children: any,
 	_leak: true,
 }> = function() {
 	this.display = this.display || "inline-flex";

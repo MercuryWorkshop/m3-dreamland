@@ -5,7 +5,7 @@ export const CardClickable: Component<{
 	display?: string,
 	extraOptions?: any,
 }, {
-	children: any
+	children: any,
 	_leak: true,
 }> = function() {
 	this["on:click"] = this["on:click"] || (() => { });

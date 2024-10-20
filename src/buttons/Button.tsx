@@ -7,7 +7,7 @@ export const Button: Component<{
 	extraOptions?: any,
 	"on:click"?: () => void,
 }, {
-	children: string,
+	children: any,
 	_leak: true,
 }> = function() {
 	this.disabled = this.disabled || false;

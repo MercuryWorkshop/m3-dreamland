@@ -3,7 +3,7 @@ export const NavDrawer: Component<{
 	display?: string,
 	extraOptions?: any,
 }, {
-	children: any
+	children: any,
 	_leak: true,
 }> = function() {
 	this.display = this.display || "flex";

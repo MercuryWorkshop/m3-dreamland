@@ -9,7 +9,7 @@ export const NavDrawerLink: Component<{
 
 	extraOptions?: any,
 }, {
-	children: string,
+	children: any,
 	_leak: true,
 }> = function() {
 	this.selected = this.selected || false;

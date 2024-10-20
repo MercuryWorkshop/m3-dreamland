@@ -14,7 +14,7 @@ export const Chip: Component<{
 	display?: string,
 	extraOptions?: any,
 }, {
-	children: string,
+	children: any,
 	_leak: true,
 }> = function() {
 	this.elevated = this.elevated || false;

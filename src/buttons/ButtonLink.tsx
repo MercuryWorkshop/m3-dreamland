@@ -6,7 +6,7 @@ export const ButtonLink: Component<{
 	display?: string,
 	extraOptions?: any,
 }, {
-	children: string,
+	children: any,
 	_leak: true,
 }> = function() {
 	this.iconType = this.iconType || "none";
