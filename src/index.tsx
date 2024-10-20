@@ -12,6 +12,7 @@ export { FAB } from "./buttons/FAB";
 
 export { Card } from "./containers/Card";
 export { CardClickable } from "./containers/CardClickable";
+export { Dialog } from "./containers/Dialog";
 
 export { Switch } from "./forms/Switch";
 export { CircularProgress } from "./forms/CircularProgress";
