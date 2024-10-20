@@ -50,6 +50,7 @@ export type Color =
 	| "surfaceContainerHighest"
 	| "surfaceTint";
 export type SerializedScheme = Record<Color, number>;
+export type SchemeInput = "tonal_spot" | "content" | "fidelity" | "vibrant" | "expressive" | "neutral" | "monochrome" | { new(sourceColorHct: Hct, isDark: boolean, contrastLevel: number): DynamicScheme };
 
 const colors: Color[] = [
 	"primary",
@@ -92,13 +93,13 @@ const colors: Color[] = [
 ];
 
 const schemes = {
-  tonal_spot: SchemeTonalSpot,
-  content: SchemeContent,
-  fidelity: SchemeFidelity,
-  vibrant: SchemeVibrant,
-  expressive: SchemeExpressive,
-  neutral: SchemeNeutral,
-  monochrome: SchemeMonochrome,
+	tonal_spot: SchemeTonalSpot,
+	content: SchemeContent,
+	fidelity: SchemeFidelity,
+	vibrant: SchemeVibrant,
+	expressive: SchemeExpressive,
+	neutral: SchemeNeutral,
+	monochrome: SchemeMonochrome,
 };
 
 export const serializeScheme = (scheme: DynamicScheme) => {
@@ -110,7 +111,7 @@ export const serializeScheme = (scheme: DynamicScheme) => {
 };
 
 export const genScheme = (
-	scheme: "tonal_spot" | "content" | "fidelity" | "vibrant" | "expressive" | "neutral" | "monochrome" | { new(sourceColorHct: Hct, isDark: boolean, contrastLevel: number): DynamicScheme },
+	scheme: SchemeInput,
 	contrast: number,
 	color: number
 ) => {

@@ -1,6 +1,7 @@
-import { SerializedScheme, genCSS } from "./utils";
+import { argbFromHex, hexFromArgb } from "@material/material-color-utilities";
+import { SchemeInput, SerializedScheme, genCSS, genScheme } from "./utils";
 
-export { SerializedScheme, serializeScheme, genScheme, genCSS } from "./utils";
+export { SerializedScheme, serializeScheme, genScheme, genCSS, SchemeInput } from "./utils";
 
 export { argbFromHex, hexFromArgb, sourceColorFromImage } from "@material/material-color-utilities";
 
@@ -41,15 +42,48 @@ export { Tabs, TabsItem } from "./nav/Tabs";
 
 export { Icon } from "./icon";
 
+export const StyleFromScheme: Component<{ lightScheme: SerializedScheme, darkScheme: SerializedScheme }, {}> = function() {
+	return <div><Styles light={use(this.lightScheme)} dark={use(this.darkScheme)} /></div>
+}
+
+export const StyleFromParams: Component<{
+	scheme: SchemeInput,
+	contrast: number,
+	color: string,
+
+	disableExtraStyles?: boolean
+	disableMetaThemeColor?: boolean
+}, {
+	light: SerializedScheme,
+	dark: SerializedScheme,
+}> = function() {
+	useChange([this.scheme, this.contrast, this.color], () => {
+		const { light, dark } = genScheme(this.scheme, this.contrast, argbFromHex(this.color));
+		this.light = light;
+		this.dark = dark;
+	});
+
+	return (
+		<div><Styles
+			light={use(this.light)}
+			dark={use(this.dark)}
+			disableExtraStyles={use(this.disableExtraStyles)}
+			disableMetaThemeColor={use(this.disableMetaThemeColor)}
+		/></div>
+	)
+}
+
 export const Styles: Component<{
 	light: SerializedScheme,
 	dark: SerializedScheme,
 	disableExtraStyles?: boolean
+	disableMetaThemeColor?: boolean
 }, {
 	gennedCssEl: HTMLElement
 }> = function() {
 	this.gennedCssEl = h("style", [], genCSS(this.light, this.dark)) as HTMLElement;
 	useChange([this.light, this.dark], () => { this.gennedCssEl.innerText = genCSS(this.light, this.dark) });
+
 	this.mount = () => {
 		if (!this.disableExtraStyles) {
 			this.root.appendChild(h("style", [], `
@@ -232,6 +266,11 @@ a[class*="-m3-container"] {
   text-decoration: none;
 }
 	`));
+
+		if (!this.disableMetaThemeColor) {
+			document.head.appendChild(<meta name="theme-color" content={use(this.light, x => hexFromArgb(x["primary"]))} />);
+			document.head.appendChild(<meta name="theme-color" media="(prefers-color-scheme: dark)" content={use(this.dark, x => hexFromArgb(x["primary"]))} />)
+		}
 	}
 	return <div />;
 };
