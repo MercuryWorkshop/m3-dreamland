@@ -7,7 +7,7 @@ export const Switch: Component<{
 
 	display?: string,
 	extraOptions?: any,
-	extraWrapperOptions: any,
+	extraWrapperOptions?: any,
 }, {
 	_leak: true,
 }> = function() {

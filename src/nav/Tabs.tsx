@@ -12,7 +12,7 @@ export const Tabs: Component<{
 
 	display?: string,
 	extraOptions?: any,
-	extraWrapperOptions: any,
+	extraWrapperOptions?: any,
 }, {
 	tabidx: number,
 	_leak: true,
