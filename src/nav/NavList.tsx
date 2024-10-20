@@ -4,7 +4,8 @@ export const NavList: Component<{
 	display?: string,
 	extraOptions?: any,
 }, {
-	children: any
+	children: any,
+	_leak: true,
 }> = function() {
 	this.display = this.display || "flex";
 	this.extraOptions = this.extraOptions || {};

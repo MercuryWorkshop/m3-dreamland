@@ -12,7 +12,9 @@ export const FAB: Component<{
 
 	display?: string,
 	extraOptions?: any,
-}, {}> = function() {
+}, {
+	_leak: true,
+}> = function() {
 	this.color = this.color || "primary";
 	this.size = this.size || "normal";
 	this.elevation = this.elevation || "normal";

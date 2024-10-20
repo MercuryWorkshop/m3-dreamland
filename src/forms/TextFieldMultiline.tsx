@@ -16,7 +16,9 @@ export const TextFieldMultiline: Component<{
 	display?: string,
 	extraOptions?: any,
 	extraWrapperOptions: any,
-}, {}> = function() {
+}, {
+	_leak: true,
+}> = function() {
 	this.error = this.error || false;
 	this.disabled = this.disabled || false;
 	this.required = this.required || false;
@@ -162,7 +164,7 @@ export const TextFieldMultiline: Component<{
 				root.style.height = textarea.scrollHeight + "px";
 			};
 			this.root.addEventListener("input", update);
-			useChange([use(this.value)], update);
+			useChange([this.value], update);
 		})
 		resize.observe(this.root.firstElementChild);
 	}

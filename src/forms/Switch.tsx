@@ -8,7 +8,9 @@ export const Switch: Component<{
 	display?: string,
 	extraOptions?: any,
 	extraWrapperOptions: any,
-}, {}> = function() {
+}, {
+	_leak: true,
+}> = function() {
 	this.checked = this.checked || false;
 	this.disabled = this.disabled || false;
 

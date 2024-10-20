@@ -14,6 +14,7 @@ export const NavListLink: Component<{
 	extraOptions?: any,
 }, {
 	children: string,
+	_leak: true,
 }> = function() {
 	this.selected = this.selected || false;
 	this["on:click"] = this["on:click"] || (() => { });
@@ -137,8 +138,7 @@ export const NavListLink: Component<{
 				{...this.extraOptions}
 			>
 				<div class="icon-space">
-					{/* @ts-expect-error dl limitation */}
-					<Icon bind:icon={use(this.icon)} />
+					<Icon icon={use(this.icon)} />
 				</div>
 				<p class="m3-font-label-medium">{this.children}</p>
 			</a>

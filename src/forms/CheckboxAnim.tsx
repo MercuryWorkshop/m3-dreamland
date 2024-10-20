@@ -3,6 +3,7 @@ export const CheckboxAnim: Component<{
 	extraOptions?: any,
 }, {
 	children: HTMLInputElement,
+	_leak: true,
 }> = function() {
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};

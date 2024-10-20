@@ -10,6 +10,7 @@ export const NavDrawerLink: Component<{
 	extraOptions?: any,
 }, {
 	children: string,
+	_leak: true,
 }> = function() {
 	this.selected = this.selected || false;
 
@@ -80,8 +81,7 @@ export const NavDrawerLink: Component<{
 		<span class={cssClass}>
 			<a href={use(this.href)} class="destination" class:selected={use(this.selected)} {...this.extraOptions}>
 				<div class="NavDrawerLink-layer" />
-				{/* @ts-expect-error dl limitation */}
-				<Icon bind:icon={use(this.icon)} />
+				<Icon icon={use(this.icon)} />
 				<span class="m3-font-label-large">{this.children}</span>
 			</a>
 		</span>

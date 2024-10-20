@@ -3,7 +3,9 @@ export const CircularProgress: Component<{
 
 	display?: string,
 	extraOptions?: any,
-}, {}> = function() {
+}, {
+	_leak: true,
+}> = function() {
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};
 

@@ -18,7 +18,9 @@ export const TextField: Component<{
 	display?: string,
 	extraOptions?: any,
 	extraWrapperOptions: any,
-}, {}> = function() {
+}, {
+	_leak: true,
+}> = function() {
 	this.error = this.error || false;
 	this.disabled = this.disabled || false;
 	this.required = this.required || false;

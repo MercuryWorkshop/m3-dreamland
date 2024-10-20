@@ -7,6 +7,7 @@ export const ButtonLink: Component<{
 	extraOptions?: any,
 }, {
 	children: string,
+	_leak: true,
 }> = function() {
 	this.iconType = this.iconType || "none";
 	this.display = this.display || "inline-flex";

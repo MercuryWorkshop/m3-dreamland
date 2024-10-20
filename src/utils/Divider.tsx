@@ -1,4 +1,4 @@
-export const Divider: Component<{ inset?: boolean }, {}> = function() {
+export const Divider: Component<{ inset?: boolean }, { _leak: true, }> = function() {
 	const cssClass = css`
 		hr {
 			margin: 0;

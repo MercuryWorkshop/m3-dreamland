@@ -8,7 +8,7 @@ export const Icon: Component<{
 }, {}> = function() {
 	this.mount = () => {
 		this.root.innerHTML = this.icon.body;
-		useChange([use(this.icon)], () => {
+		useChange([this.icon], () => {
 			this.root.innerHTML = this.icon.body;
 		})
 	};

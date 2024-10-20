@@ -8,6 +8,7 @@ export const Button: Component<{
 	"on:click"?: () => void,
 }, {
 	children: string,
+	_leak: true,
 }> = function() {
 	this.disabled = this.disabled || false;
 	this.iconType = this.iconType || "none";

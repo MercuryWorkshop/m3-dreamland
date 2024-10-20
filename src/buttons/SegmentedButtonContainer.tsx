@@ -3,6 +3,7 @@ export const SegmentedButtonContainer: Component<{
 	extraOptions?: any,
 }, {
 	children: any,
+	_leak: true,
 }> = function() {
 	this.display = this.display || "inline-flex";
 	this.extraOptions = this.extraOptions || {};

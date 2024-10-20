@@ -18,6 +18,7 @@ export const SegmentedButtonItem: Component<{
 	extraOptions?: any,
 }, {
 	children: string,
+	_leak: true,
 }> = function() {
 	this.type = this.type || "radio";
 	this.checked = this.checked || false;

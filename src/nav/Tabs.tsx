@@ -15,6 +15,7 @@ export const Tabs: Component<{
 	extraWrapperOptions: any,
 }, {
 	tabidx: number,
+	_leak: true,
 }> = function() {
 	this.secondary = false;
 

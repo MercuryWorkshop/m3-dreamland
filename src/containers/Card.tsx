@@ -5,6 +5,7 @@ export const Card: Component<{
 	extraOptions?: any,
 }, {
 	children: any
+	_leak: true,
 }> = function() {
 	this.display = this.display || "flex";
 	this.extraOptions = this.extraOptions || {};

@@ -6,7 +6,9 @@ export type Option = { label: string, value: string, icon?: IconifyIcon };
 export const ChipChooser: Component<{
 	options: Option[],
 	chosenOptions: string[],
-}, {}> = function() {
+}, {
+	_leak: true,
+}> = function() {
 
 	const cssClass = css`
 		.ChipChooser-m3-container {
@@ -21,7 +23,6 @@ export const ChipChooser: Component<{
 		<span class={cssClass}>
 			<div class="ChipChooser-m3-container">
 				{use(this.options, x => x.map((option) =>
-					/* @ts-expect-error dl limitation */
 					<Chip
 						{...option}
 						type="input"

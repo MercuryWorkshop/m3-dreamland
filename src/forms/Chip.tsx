@@ -15,6 +15,7 @@ export const Chip: Component<{
 	extraOptions?: any,
 }, {
 	children: string,
+	_leak: true,
 }> = function() {
 	this.elevated = this.elevated || false;
 	this.selected = this.selected || false;

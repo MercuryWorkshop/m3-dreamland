@@ -6,6 +6,7 @@ export const CardClickable: Component<{
 	extraOptions?: any,
 }, {
 	children: any
+	_leak: true,
 }> = function() {
 	this["on:click"] = this["on:click"] || (() => { });
 

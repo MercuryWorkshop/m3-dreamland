@@ -6,7 +6,8 @@
 		"module": "esnext",
 		"jsx": "react",
 		"jsxFactory": "h",
-		"jsxFragmentFactory": "Fragment"
+		"jsxFragmentFactory": "Fragment",
+		"types": ["dreamland"]
 	},
 	"include": [
 		"src"

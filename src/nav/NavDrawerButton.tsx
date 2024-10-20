@@ -11,6 +11,7 @@ export const NavDrawerButton: Component<{
 	extraOptions?: any,
 }, {
 	children: string,
+	_leak: true,
 }> = function() {
 	this.selected = this.selected || false;
 	this["on:click"] = this["on:click"] || (() => { });
@@ -81,8 +82,7 @@ export const NavDrawerButton: Component<{
 		<span class={cssClass}>
 			<button class="destination" class:selected={use(this.selected)} on:click={this["on:click"]} {...this.extraOptions}>
 				<div class="NavDrawerButton-layer" />
-				{/* @ts-expect-error dl limitation */}
-				<Icon bind:icon={use(this.icon)} />
+				<Icon icon={use(this.icon)} />
 				<span class="m3-font-label-large">{this.children}</span>
 			</button>
 		</span>
