@@ -101,7 +101,7 @@ export const NavListLink: Component<{
 			width 400ms cubic-bezier(0.356, 0.701, 0, 1.004),
 			inset 400ms cubic-bezier(0.356, 0.701, 0, 1.004);
 		}
-		.selected > .icon-space > :global(svg) {
+		.selected > .icon-space > svg {
 			color: rgb(var(--m3-scheme-on-secondary-container));
 		}
 		

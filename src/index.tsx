@@ -14,6 +14,9 @@ export { FAB } from "./buttons/FAB";
 export { Card } from "./containers/Card";
 export { CardClickable } from "./containers/CardClickable";
 export { Dialog } from "./containers/Dialog";
+export { ListItem } from "./containers/ListItem";
+export { ListItemButton } from "./containers/ListItemButton";
+export { ListItemLabel } from "./containers/ListItemLabel";
 
 export { Switch } from "./forms/Switch";
 export { CircularProgress } from "./forms/CircularProgress";
@@ -31,6 +34,8 @@ export { TextFieldMultiline } from "./forms/TextFieldMultiline";
 
 export { ChipChooser } from "./utils/ChipChooser";
 export { Divider } from "./utils/Divider";
+export { List } from "./utils/List";
+export { ListItemCheckbox } from "./utils/ListItemCheckbox";
 
 export { NavDrawer } from "./nav/NavDrawer";
 export { NavDrawerButton } from "./nav/NavDrawerButton";

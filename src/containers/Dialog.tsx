@@ -15,7 +15,7 @@ export const Dialog: Component<{
 	display?: string,
 	extraOptions?: any,
 }, {
-	children: [HTMLElement, HTMLElement],
+	children: any,
 	dialog: HTMLDialogElement,
 	_leak: true,
 }> = function() {

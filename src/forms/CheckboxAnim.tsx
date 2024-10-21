@@ -9,6 +9,10 @@ export const CheckboxAnim: Component<{
 	this.extraOptions = this.extraOptions || {};
 
 	const cssClass = css`
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
 		.CheckboxAnim-m3-container {
 			position: relative;
 			width: 1.125rem;
@@ -105,7 +109,7 @@ export const CheckboxAnim: Component<{
 	this._leak = true;
 
 	return (
-		<label class={cssClass}>
+		<span class={cssClass}>
 			<div style={use`display: ${this.display};`} {...this.extraOptions} class="CheckboxAnim-m3-container">
 				{this.children}
 				<div class="CheckboxAnim-layer">
@@ -119,6 +123,6 @@ export const CheckboxAnim: Component<{
 					</svg>
 				</div>
 			</div>
-		</label>
+		</span>
 	)
 }

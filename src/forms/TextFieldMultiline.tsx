@@ -82,7 +82,7 @@ export const TextFieldMultiline: Component<{
 			background-color: rgb(var(--error, var(--m3-scheme-on-surface-variant)));
 			transition: all 200ms;
 		}
-		.TextFieldMultiline-m3-container > :global(svg) {
+		.TextFieldMultiline-m3-container > svg {
 			position: relative;
 			width: 1.5rem;
 			height: 1.5rem;
@@ -135,7 +135,7 @@ export const TextFieldMultiline: Component<{
 		textarea:disabled ~ .TextFieldMultiline-layer::after {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
 		}
-		textarea:disabled ~ :global(svg) {
+		textarea:disabled ~ svg {
 			color: rgb(var(--m3-scheme-on-surface) / 0.38);
 		}
 

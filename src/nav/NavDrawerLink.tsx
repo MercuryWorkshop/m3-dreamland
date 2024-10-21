@@ -41,7 +41,7 @@ export const NavDrawerLink: Component<{
 		    inset: 0;
 		    transition: all 200ms;
 		  }
-		  .destination :global(svg) {
+		  .destination svg {
 		    width: 1.5rem;
 		    height: 1.5rem;
 		  }

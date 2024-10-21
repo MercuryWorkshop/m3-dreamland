@@ -9,6 +9,10 @@ export const Checkbox: Component<{
 	this.extraOptions = this.extraOptions || {};
 
 	const cssClass = css`
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
 		.Checkbox-m3-container {
 			position: relative;
 			width: 1.125rem;
@@ -97,7 +101,7 @@ export const Checkbox: Component<{
 
 	this._leak = true;
 	return (
-		<label class={cssClass}>
+		<span class={cssClass}>
 			<div class="Checkbox-m3-container" style={use`display: ${this.display};`} {...this.extraOptions}>
 				{this.children}
 				<div class="Checkbox-layer">
@@ -111,6 +115,6 @@ export const Checkbox: Component<{
 					</svg>
 				</div>
 			</div>
-		</label>
+		</span>
 	)
 }
