@@ -72,8 +72,8 @@ export const StyleFromParams: Component<{
 		<div><Styles
 			light={use(this.light)}
 			dark={use(this.dark)}
-			disableExtraStyles={use(this.disableExtraStyles)}
-			disableMetaThemeColor={use(this.disableMetaThemeColor)}
+			disableExtraStyles={this.disableExtraStyles}
+			disableMetaThemeColor={this.disableMetaThemeColor}
 		/></div>
 	)
 }
