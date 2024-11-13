@@ -21,6 +21,7 @@ export const Switch: Component<{
 	const cssClass = css`
 		--m3-switch-track-shape: var(--m3-util-rounding-full);
 		--m3-switch-handle-shape: var(--m3-util-rounding-full);
+
 		.Switch-m3-container {
 			position: relative;
 			width: 3.25rem;
@@ -39,7 +40,7 @@ export const Switch: Component<{
 			-webkit-tap-highlight-color: transparent;
 			transition: all 300ms;
 		}
-		.Switch-layer {
+		.Switch-handle {
 			position: absolute;
 			width: 1rem;
 			height: 1rem;
@@ -52,72 +53,74 @@ export const Switch: Component<{
 
 			left: 0.5rem;
 			top: 50%;
-			transform: translate(0, -50%);
+			translate: 0 -50%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
-		.Switch-layer > svg {
+		.Switch-handle > svg {
 			width: 1rem;
 			height: 1rem;
 			color: rgb(var(--m3-scheme-on-primary-container));
 			opacity: 0;
-			transition: opacity 300ms cubic-bezier(0.271, -0.011, 0, 1.449);
+			transition:
+			opacity 300ms cubic-bezier(0.271, -0.011, 0, 1.449),
+			scale 300ms cubic-bezier(0.271, -0.011, 0, 1.449);
 		}
-		.Switch-layer::before {
-			content: " ";
-			display: block;
+		.Switch-hover {
 			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 2.5rem;
-			height: 2.5rem;
+			width: 3rem;
+			height: 3rem;
 			border-radius: var(--m3-util-rounding-full);
-			transition: all 200ms;
+
+			cursor: pointer;
+			-webkit-tap-highlight-color: transparent;
+			transition: all 300ms cubic-bezier(0.271, -0.011, 0, 1.449);
+
+			left: 1rem;
+			top: 50%;
+			translate: -50% -50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
-		
-		.Switch-m3-container:hover > input:enabled + .Switch-layer,
-		.Switch-m3-container > input:enabled:is(:active, :focus-visible) + .Switch-layer {
+
+		.Switch-m3-container:hover > input:enabled + .Switch-handle,
+		.Switch-m3-container > input:enabled:is(:active, :focus-visible) + .Switch-handle {
 			background-color: rgb(var(--m3-scheme-on-surface-variant));
 		}
-		.Switch-m3-container:hover > input:enabled:checked + .Switch-layer,
-		.Switch-m3-container > input:enabled:checked:is(:active, :focus-visible) + .Switch-layer {
+		.Switch-m3-container:hover > input:enabled:checked + .Switch-handle,
+		.Switch-m3-container > input:enabled:checked:is(:active, :focus-visible) + .Switch-handle {
 			background-color: rgb(var(--m3-scheme-primary-container));
 		}
-		.Switch-m3-container:hover > input + .Switch-layer::before {
+		.Switch-m3-container:hover > input ~ .Switch-hover {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.08);
 		}
-		.Switch-m3-container:hover > input:checked + .Switch-layer::before {
+		.Switch-m3-container:hover > input:checked ~ .Switch-hover {
 			background-color: rgb(var(--m3-scheme-primary) / 0.08);
 		}
-		.Switch-m3-container > input:is(:active, :focus-visible) + .Switch-layer::before {
-			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
-		}
-		.Switch-m3-container > input:checked:is(:active, :focus-visible) + .Switch-layer::before {
-			background-color: rgb(var(--m3-scheme-primary) / 0.12);
-		}
-		
+
 		input:checked {
 			background-color: rgb(var(--m3-scheme-primary));
 			border-color: rgb(var(--m3-scheme-primary));
 		}
-		input:checked + .Switch-layer {
+		input:checked + .Switch-handle {
 			background-color: rgb(var(--m3-scheme-on-primary));
-			width: 1.5rem;
-			height: 1.5rem;
-			left: 1.5rem;
+			scale: 1.5;
+			left: 1.75rem;
 		}
-		input:checked + .Switch-layer > svg {
+		input:checked + .Switch-handle > svg {
+			scale: 0.667;
 			opacity: 1;
 		}
-		.Switch-m3-container:active > input:enabled + .Switch-layer {
-			width: 1.75rem;
-			height: 1.75rem;
-			transform: translate(-0.375rem, -50%);
+		input:checked ~ .Switch-hover {
+			left: 2.25rem;
 		}
-		.Switch-m3-container:active > input:enabled:checked + .Switch-layer {
-			transform: translate(-0.125rem, -50%);
+		.Switch-m3-container:active > input:enabled + .Switch-handle {
+			scale: 1.75;
+		}
+		.Switch-m3-container:active > input:enabled + .Switch-handle > svg {
+			scale: 0.571;
 		}
 
 		input:disabled {
@@ -129,20 +132,20 @@ export const Switch: Component<{
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
 			border-color: transparent;
 		}
-		input:disabled + .Switch-layer {
+		input:disabled + .Switch-handle {
 			background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
 			cursor: auto;
 		}
-		input:disabled:checked + .Switch-layer {
+		input:disabled:checked + .Switch-handle {
 			background-color: rgb(var(--m3-scheme-surface));
 		}
-		input:disabled:checked + .Switch-layer > svg {
+		input:disabled:checked + .Switch-handle > svg {
 			color: rgb(var(--m3-scheme-on-surface) / 0.38);
 		}
-		input:disabled + .Switch-layer::before {
+		input:disabled ~ .Switch-hover {
 			display: none;
 		}
-		
+
 		.Switch-m3-container {
 			print-color-adjust: exact;
 			-webkit-print-color-adjust: exact;
@@ -151,14 +154,14 @@ export const Switch: Component<{
 			input:checked {
 				background-color: canvastext !important;
 			}
-			.Switch-layer {
+			.Switch-handle {
 				background-color: canvastext !important;
 			}
-			input:checked + .Switch-layer {
+			input:checked + .Switch-handle {
 				background-color: canvas !important;
 			}
 			input:disabled,
-			input:disabled + .Switch-layer {
+			input:disabled + .Switch-handle {
 				opacity: 0.38;
 			}
 		}
@@ -176,7 +179,7 @@ export const Switch: Component<{
 	this._leak = true;
 
 	this.mount = () => {
-		window.addEventListener("mouseup", handleMouseUp);
+		window.addEventListener("pointerup", handleMouseUp);
 	}
 
 	return (
@@ -186,7 +189,8 @@ export const Switch: Component<{
 				class="Switch-m3-container"
 				{...this.extraWrapperOptions}
 
-				on:mousedown={((e: MouseEvent) => { if (!this.disabled) { startX = e.clientX } })}
+				on:pointerdown={(e: MouseEvent) => { if (!this.disabled) { startX = e.clientX } }}
+				on:dragstart={(e: Event) => { e.preventDefault() }}
 			>
 				<input
 					{...this.extraOptions}
@@ -202,9 +206,10 @@ export const Switch: Component<{
 					role="switch"
 					type="checkbox"
 				/>
-				<div class="Switch-layer">
+				<div class="Switch-handle">
 					<Icon icon={iconCheck} />
 				</div>
+				<div class="Switch-hover" />
 			</div>
 		</label>
 	)
