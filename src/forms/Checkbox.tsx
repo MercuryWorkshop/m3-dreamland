@@ -24,6 +24,7 @@ export const Checkbox: Component<{
 			position: absolute;
 			opacity: 0;
 		}
+
 		.layer-container {
 			position: absolute;
 			inset: -0.6875rem;
@@ -42,28 +43,36 @@ export const Checkbox: Component<{
 			transition: all 200ms;
 			-webkit-tap-highlight-color: transparent;
 		}
+
 		svg {
 			position: absolute;
-			inset: 0.6875rem;
+			inset: 0;
 			color: rgb(var(--m3-scheme-on-primary));
+			pointer-events: none;
+		}
+		path {
+			stroke-dasharray: 20.874 20.874;
+			stroke-dashoffset: 20.874;
 			opacity: 0;
 			transition: opacity 200ms;
 		}
-		
+
 		input:focus-visible + .layer-container {
-			background-color: rgb(var(--m3-scheme-on-surface));
+			color: rgb(var(--m3-scheme-on-surface));
 		}
+
 		input:checked + .layer-container {
-			background-color: rgb(var(--m3-scheme-primary));
+			color: rgb(var(--m3-scheme-primary));
 		}
 		input:checked + .layer-container .checkbox-box {
 			background-color: rgb(var(--m3-scheme-primary));
 		}
-
-		input:checked ~ svg {
+		input:checked ~ svg > path {
+			stroke-dashoffset: 0;
 			opacity: 1;
+			transition: stroke-dashoffset 200ms;
 		}
-		
+
 		input:disabled + .layer-container {
 			color: rgb(var(--m3-scheme-on-surface) / 0.38);
 			cursor: not-allowed;

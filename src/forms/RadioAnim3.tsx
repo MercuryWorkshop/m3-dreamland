@@ -17,6 +17,7 @@ export const RadioAnim3: Component<{
 			width: 1.25rem;
 			height: 1.25rem;
 		}
+
 		.RadioAnim3-m3-container input {
 			position: absolute;
 			opacity: 0;
@@ -31,6 +32,7 @@ export const RadioAnim3: Component<{
 			color: rgb(var(--m3-scheme-on-surface-variant));
 			cursor: pointer;
 		}
+
 		.radio-circle {
 			position: absolute;
 			inset: 0.625rem;
@@ -41,6 +43,7 @@ export const RadioAnim3: Component<{
 			transition: all 0.3s;
 			-webkit-tap-highlight-color: transparent;
 		}
+
 		.radio-dot {
 			position: absolute;
 			inset: 0.75rem;
@@ -51,18 +54,20 @@ export const RadioAnim3: Component<{
 			transition: all 0.3s;
 			-webkit-tap-highlight-color: transparent;
 		}
-		
+
 		input:focus-visible + .layer-container {
 			color: rgb(var(--m3-scheme-on-surface));
 		}
+
 		input:checked + .layer-container {
 			color: rgb(var(--m3-scheme-primary));
 		}
+
 		input:checked + .layer-container .radio-dot {
 			outline-width: 0.3125rem;
 			outline-offset: -0.5rem;
 		}
-		
+
 		input:disabled + .layer-container {
 			color: rgb(var(--m3-scheme-on-surface) / 0.38);
 			cursor: not-allowed;
