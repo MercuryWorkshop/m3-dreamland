@@ -1,3 +1,5 @@
+import { Layer } from "../ripple";
+
 export const RadioAnim2: Component<{
 
 	display?: string,
@@ -19,88 +21,75 @@ export const RadioAnim2: Component<{
 			position: absolute;
 			opacity: 0;
 		}
-		.RadioAnim2-layer {
+
+		.layer-container {
 			position: absolute;
 			inset: -0.625rem;
 			width: 2.5rem;
 			height: 2.5rem;
 			border-radius: var(--m3-util-rounding-full);
-			transition: all 200ms;
+			color: rgb(var(--m3-scheme-on-surface-variant));
 			cursor: pointer;
-			--color: var(--m3-scheme-on-surface-variant);
-			-webkit-tap-highlight-color: transparent;
 		}
-		.RadioAnim2-layer::before {
-			content: " ";
-			display: block;
+		.radio-circle {
 			position: absolute;
 			inset: 0.625rem;
 			width: 1.25rem;
 			height: 1.25rem;
 			border-radius: var(--m3-util-rounding-full);
-			border: solid 0.125rem rgb(var(--color));
+			border: solid 0.125rem currentColor); 
 			transition: all 0.3s;
+			-webkit-tap-highlight-color: transparent;
 		}
-		.RadioAnim2-layer::after {
-			content: " ";
-			display: block;
+		.radio-dot {
 			position: absolute;
-			inset: 1.25rem;
-			width: 0rem;
-			height: 0rem;
-			border-radius: var(--m3-util-rounding-full);
-			background-color: rgb(var(--color));
-		}
-		
-		@media (hover: hover) {
-			.RadioAnim2-layer:hover {
-				--color: var(--m3-scheme-on-surface);
-				background-color: rgb(var(--color) / 0.08);
-			}
-		}
-		.RadioAnim2-layer:active,
-		input:focus-visible + .RadioAnim2-layer {
-			--color: var(--m3-scheme-on-surface);
-			background-color: rgb(var(--color) / 0.12);
-		}
-		input:enabled + .RadioAnim2-layer:active::before {
-			transform: scale(0.9);
-		}
-		input:checked + .RadioAnim2-layer {
-			--color: var(--m3-scheme-primary);
-		}
-		input:checked + .RadioAnim2-layer::after {
 			inset: 0.9375rem;
 			width: 0.625rem;
 			height: 0.625rem;
+			scale: 0;
+			border-radius: var(--m3-util-rounding-full);
+			background-color: currentColor;
+			transition: all 0.3s;
+			-webkit-tap-highlight-color: transparent;
+		}
+		
+		input:focus-visible + .layer-container {
+			color: rgb(var(--m3-scheme-on-surface));
+		}
+
+		input:checked + .layer-container {
+			--color: var(--m3-scheme-primary);
+		}
+		input:checked + .layer-container .radio-dot {
+			scale: 1;
 			transition: all 0.3s;
 		}
 		
-		input:disabled + .RadioAnim2-layer {
-			background-color: transparent;
-			--color: var(--m3-scheme-on-surface) / 0.38;
-			pointer-events: none;
+		input:disabled + .layer-container {
+			color: rgb(var(--m3-scheme-on-surface) / 0.38);
+			cursor: not-allowed;
 		}
 
 		.RadioAnim2-m3-container {
 			print-color-adjust: exact;
 			-webkit-print-color-adjust: exact;
 		}
+
 		@media screen and (forced-colors: active) {
-			input:checked + .RadioAnim2-layer::before {
+			input:checked + .layer-container .radio-circle {
 				border-color: selecteditem;
 			}
-			.RadioAnim2-layer::after {
+			.radio-dot {
 				background-color: selecteditem;
 			}
-			input:disabled + .RadioAnim2-layer {
+			input:disabled + .layer-container {
 				opacity: 0.38;
 			}
 		}
-		
 	`;
 	this._leak = true;
 
+	const layer = <Layer />;
 	return (
 		<label class={cssClass}>
 			<div
@@ -110,7 +99,11 @@ export const RadioAnim2: Component<{
 				class="RadioAnim2-m3-container"
 			>
 				{this.children}
-				<div class="RadioAnim2-layer" />
+				<div class="layer-container" on:pointerdown={layer.$.ripple}>
+					{layer}
+					<div class="radio-circle"></div>
+					<div class="radio-dot"></div>
+				</div>
 			</div>
 		</label>
 	)

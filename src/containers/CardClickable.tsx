@@ -1,3 +1,5 @@
+import { Layer } from "../ripple";
+
 export const CardClickable: Component<{
 	type: "filled" | "elevated" | "outlined",
 	"on:click"?: () => void,
@@ -24,13 +26,6 @@ export const CardClickable: Component<{
 			background-color: rgb(var(--m3-scheme-surface));
 			color: rgb(var(--m3-scheme-on-surface));
 			transition: all 200ms;
-		}
-		.CardClickable-layer {
-			position: absolute;
-			inset: 0;
-			border-radius: inherit;
-			transition: all 200ms;
-			pointer-events: none;
 		}
 
 		.type-elevated {
@@ -61,18 +56,9 @@ export const CardClickable: Component<{
 			button.type-elevated:hover {
 				box-shadow: var(--m3-util-elevation-2);
 			}
-			button:hover > .CardClickable-layer {
-				background-color: rgb(var(--m3-scheme-on-surface) / 0.08);
-			}
-		}
-		button:is(:focus-visible, :active) > .CardClickable-layer {
-			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
 		}
 
 		@media print, (forced-colors: active) {
-			.CardClickable-layer {
-				display: none;
-			}
 			.type-filled {
 				outline: solid 0.125rem;
 			}
@@ -85,6 +71,7 @@ export const CardClickable: Component<{
 	`;
 	this._leak = true;
 
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<button
@@ -92,9 +79,10 @@ export const CardClickable: Component<{
 				class={use`CardClickable-m3-container type-${this.type}`}
 
 				on:click={this["on:click"]}
+				on:pointerdown={layer.$.ripple}
 				{...this.extraOptions}
 			>
-				<div class={`CardClickable-layer`}></div>
+				{layer}
 				{this.children}
 			</button>
 		</span >

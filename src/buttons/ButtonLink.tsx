@@ -1,3 +1,5 @@
+import { Layer } from "../ripple";
+
 export const ButtonLink: Component<{
 	type: "elevated" | "filled" | "tonal" | "outlined" | "text",
 	href: string,
@@ -29,11 +31,6 @@ export const ButtonLink: Component<{
 			position: relative;
 			overflow: hidden;
 			user-select: none;
-		}
-		.ButtonLink-layer {
-			position: absolute;
-			inset: 0;
-			transition: all 200ms;
 		}
 
 		.ButtonLink-m3-container > * {
@@ -91,9 +88,6 @@ export const ButtonLink: Component<{
 			-webkit-tap-highlight-color: transparent;
 		}
 		@media (hover: hover) {
-			.ButtonLink-m3-container:hover > .ButtonLink-layer {
-				background-color: rgb(var(--text) / 0.08);
-			}
 			.ButtonLink-m3-container.elevated:hover {
 				box-shadow: var(--m3-util-elevation-2);
 			}
@@ -103,10 +97,6 @@ export const ButtonLink: Component<{
 			.ButtonLink-m3-container.tonal:hover {
 				box-shadow: var(--m3-util-elevation-1);
 			}
-		}
-		.ButtonLink-m3-container:focus-visible > .ButtonLink-layer,
-		.ButtonLink-m3-container:active > .ButtonLink-layer {
-			background-color: rgb(var(--text) / 0.12);
 		}
 
 		.ButtonLink-m3-container {
@@ -123,6 +113,7 @@ export const ButtonLink: Component<{
 	`;
 
 	this._leak = true;
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<a
@@ -131,8 +122,10 @@ export const ButtonLink: Component<{
 
 				href={use(this.href)}
 				{...this.extraOptions}
+
+				on:pointerdown={layer.$.ripple}
 			>
-				<div class={`ButtonLink-layer`}></div>
+				{layer}
 				{this.children}
 			</a>
 		</span>

@@ -1,5 +1,6 @@
 import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
+import { Layer } from "../ripple";
 
 export const FAB: Component<{
 	icon?: IconifyIcon | null,
@@ -42,12 +43,6 @@ export const FAB: Component<{
 			cursor: pointer;
 			transition: all 200ms;
 		}
-		.FAB-layer {
-			position: absolute;
-			inset: 0;
-			transition: all 200ms;
-			opacity: 0;
-		}
 
 		.elevation-normal {
 			box-shadow: var(--m3-util-elevation-3);
@@ -88,9 +83,6 @@ export const FAB: Component<{
 			background-color: rgb(var(--m3-scheme-primary-container));
 			color: rgb(var(--m3-scheme-on-primary-container));
 		}
-		.color-primary > .FAB-layer {
-			background-color: rgb(var(--m3-scheme-on-primary-container));
-		}
 		.color-surface {
 			background-color: rgb(var(--m3-scheme-surface-container-low));
 			color: rgb(var(--m3-scheme-primary));
@@ -98,41 +90,25 @@ export const FAB: Component<{
 		.color-surface.elevation-normal {
 			background-color: rgb(var(--m3-scheme-surface-container-high));
 		}
-		.color-surface > .FAB-layer {
-			background-color: rgb(var(--m3-scheme-primary));
-		}
 		.color-secondary {
 			background-color: rgb(var(--m3-scheme-secondary-container));
 			color: rgb(var(--m3-scheme-on-secondary-container));
 		}
-		.color-secondary > .FAB-layer {
-			background-color: rgb(var(--m3-scheme-on-secondary-container));
-		}
 		.color-tertiary {
 			background-color: rgb(var(--m3-scheme-tertiary-container));
 			color: rgb(var(--m3-scheme-on-tertiary-container));
-		}
-		.color-tertiary > .FAB-layer {
-			background-color: rgb(var(--m3-scheme-on-tertiary-container));
 		}
 		
 		button {
 			-webkit-tap-highlight-color: transparent;
 		}
 		@media (hover: hover) {
-			button:hover > .FAB-layer {
-				opacity: 0.08;
-			}
 			.elevation-normal:hover {
 				box-shadow: var(--m3-util-elevation-4);
 			}
 			.elevation-lowered:hover {
 				box-shadow: var(--m3-util-elevation-2);
 			}
-		}
-		button:focus-visible > .FAB-layer,
-		button:active > .FAB-layer {
-			opacity: 0.12;
 		}
 
 		.FAB-m3-container {
@@ -148,6 +124,7 @@ export const FAB: Component<{
 	`;
 
 	this._leak = true;
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<button
@@ -155,10 +132,11 @@ export const FAB: Component<{
 				style={use`display: ${this.display};`}
 
 				on:click={this["on:click"]}
+				on:pointerdown={layer.$.ripple}
 
 				{...this.extraOptions}
 			>
-				<div class={`FAB-layer`} />
+				{layer}
 				{use(this.icon, x => x ?
 					<Icon icon={this.icon} /> : null)}
 				{use(this.text, x => x ? x : null)}

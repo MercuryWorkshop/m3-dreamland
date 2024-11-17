@@ -1,5 +1,6 @@
 import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon"
+import { Layer } from "../ripple";
 
 export const Chip: Component<{
 	type: "input" | "assist" | "general",
@@ -43,13 +44,10 @@ export const Chip: Component<{
 			-webkit-tap-highlight-color: transparent;
 			transition: all 200ms;
 		}
-		.Chip-layer {
+		.Chip-m3-container > :is(.ripple-container, .tint) {
 			position: absolute;
 			inset: -0.0625rem;
-			border-radius: var(--m3-chip-shape);
-			transition: all 200ms;
 		}
-		
 		.Chip-m3-container > svg {
 			width: 1.125rem;
 			height: 1.125rem;
@@ -87,10 +85,6 @@ export const Chip: Component<{
 			color: rgb(var(--m3-scheme-on-secondary-container));
 		}
 		
-		.Chip-layer {
-			background-color: currentColor;
-			opacity: 0;
-		}
 		@media (hover: hover) {
 			.selected:hover:enabled {
 				box-shadow: var(--m3-util-elevation-1);
@@ -98,15 +92,6 @@ export const Chip: Component<{
 			.elevated:hover:enabled {
 				box-shadow: var(--m3-util-elevation-2);
 			}
-			.Chip-m3-container:hover:enabled > .Chip-layer {
-				opacity: 0.08;
-			}
-		}
-		.Chip-m3-container:focus-visible:enabled > .Chip-layer {
-			opacity: 0.08;
-		}
-		.Chip-m3-container:active:enabled > .Chip-layer {
-			opacity: 0.12;
 		}
 		
 		.Chip-m3-container:disabled {
@@ -140,6 +125,7 @@ export const Chip: Component<{
 	`;
 	this._leak = true;
 
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<button
@@ -147,13 +133,14 @@ export const Chip: Component<{
 				style={use`display: ${this.display}`}
 
 				on:click={this["on:click"] || (() => { })}
+				on:pointerdown={layer.$.ripple}
 
 				class:elevated={use(this.elevated)}
 				class:selected={use(this.selected)}
 				disabled={use(this.disabled)}
 				{...this.extraOptions}
 			>
-				<div class="Chip-layer" />
+				{layer}
 				{use(this.icon, x => x ?
 					<Icon icon={x} class="leading" />
 					: null)}

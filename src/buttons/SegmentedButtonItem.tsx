@@ -1,6 +1,7 @@
 import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon"
 import iconCheck from "@ktibow/iconset-material-symbols/check"
+import { Layer } from "../ripple";
 
 export const SegmentedButtonItem: Component<{
 	type?: "radio" | "checkbox",
@@ -36,8 +37,7 @@ export const SegmentedButtonItem: Component<{
 			align-items: center;
 			justify-content: center;
 
-			--text: var(--m3-scheme-on-surface);
-			color: rgb(var(--text));
+			color: rgb(var(--m3-scheme-on-surface));
 			transition: all 200ms;
 
 			cursor: pointer;
@@ -52,11 +52,6 @@ export const SegmentedButtonItem: Component<{
 		input:disabled + label {
 			color: rgb(var(--m3-scheme-on-surface) / 0.38);
 			cursor: auto;
-		}
-		.SegmentedButtonItem-layer {
-			position: absolute;
-			inset: 0;
-			transition: all 200ms;
 		}
 		.icon {
 			height: 1.125rem;
@@ -113,23 +108,15 @@ export const SegmentedButtonItem: Component<{
 		label {
 			-webkit-tap-highlight-color: transparent;
 		}
-		@media (hover: hover) {
-			input:not(:disabled) + label:hover > .SegmentedButtonItem-layer {
-				background-color: rgb(var(--text) / 0.08);
-			}
-		}
 
 		input:checked + label {
 			background-color: rgb(var(--m3-scheme-secondary-container));
-			--text: var(--m3-scheme-on-secondary-container);
-		}
-		input:enabled:focus-visible + label > .SegmentedButtonItem-layer,
-		input:enabled + label:active > .SegmentedButtonItem-layer {
-			background-color: rgb(var(--text) / 0.12);
+			color: rgb(var(--m3-scheme-on-secondary-container));
 		}
 	`;
 	this._leak = true;
 
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<input
@@ -145,8 +132,9 @@ export const SegmentedButtonItem: Component<{
 				for={use(this.input)}
 				class="m3-font-label-large"
 				{...this.extraOptions}
+				on:pointerdown={layer.$.ripple}
 			>
-				<div class="SegmentedButtonItem-layer" />
+				{layer}
 				{use(this.icon, x => x ?
 					<div class="custom icon">
 						<Icon icon={x} />

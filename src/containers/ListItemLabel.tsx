@@ -1,3 +1,5 @@
+import { Layer } from "../ripple";
+
 export const ListItemLabel: Component<{
 	overline?: string,
 	headline?: string,
@@ -25,9 +27,11 @@ export const ListItemLabel: Component<{
 
 	const cssClass = css`
 		.ListItemLabel-m3-container {
-			padding: 0.5rem 1.5rem 0.5rem 1rem;
 			align-items: center;
+			padding: 0.5rem 1.5rem 0.5rem 1rem;
 			gap: 1rem;
+
+			position: relative;
 			-webkit-tap-highlight-color: transparent;
 			cursor: pointer;
 			transition: background-color 200ms;
@@ -66,26 +70,19 @@ export const ListItemLabel: Component<{
 		.headline {
 			color: rgb(var(--m3-scheme-on-surface));
 		}
-
-		@media (hover: hover) {
-			.ListItemLabel-m3-container:hover {
-				background-color: rgb(var(--m3-scheme-on-surface) / 0.08);
-			}
-		}
-		.ListItemLabel-m3-container:focus-visible,
-		.ListItemLabel-m3-container:active {
-			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
-		}
 	`;
 	this._leak = true;
 
+	const layer = <Layer />;
 	return (
 		<div class={cssClass}>
 			<label
 				class={use`ListItemLabel-m3-container lines-${this._lines}`}
 				style={use`display: ${this.display}`}
 				{...this.extraOptions}
+				on:pointerdown={layer.$.ripple}
 			>
+				{layer}
 				<div class="leading">
 					{this.children[0]}
 				</div>

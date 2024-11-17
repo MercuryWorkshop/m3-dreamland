@@ -46,6 +46,7 @@ export { NavListLink } from "./nav/NavListLink";
 export { Tabs, TabsItem } from "./nav/Tabs";
 
 export { Icon } from "./icon";
+export { Layer } from "./ripple";
 
 export const StyleFromScheme: Component<{ lightScheme: SerializedScheme, darkScheme: SerializedScheme }, {}> = function() {
 	return <div><Styles light={use(this.lightScheme)} dark={use(this.darkScheme)} /></div>

@@ -1,3 +1,5 @@
+import { Layer } from "../ripple";
+
 export const Checkbox: Component<{
 	display?: string,
 	extraOptions?: any,
@@ -22,26 +24,23 @@ export const Checkbox: Component<{
 			position: absolute;
 			opacity: 0;
 		}
-		.Checkbox-layer {
+		.layer-container {
 			position: absolute;
 			inset: -0.6875rem;
 			width: 2.5rem;
 			height: 2.5rem;
 			border-radius: var(--m3-util-rounding-full);
-
-			transition: all 200ms;
+			color: rgb(var(--m3-scheme-on-surface-variant));
 			cursor: pointer;
-			--color: var(--m3-scheme-on-surface-variant);
-			-webkit-tap-highlight-color: transparent;
 		}
-		.Checkbox-layer::before {
-			content: " ";
-			display: block;
+
+		.checkbox-box {
 			position: absolute;
 			inset: 0.6875rem;
 			border-radius: 0.125rem;
-			border: solid 0.125rem rgb(var(--color));
+			border: solid 0.125rem currentColor;
 			transition: all 200ms;
+			-webkit-tap-highlight-color: transparent;
 		}
 		svg {
 			position: absolute;
@@ -51,37 +50,34 @@ export const Checkbox: Component<{
 			transition: opacity 200ms;
 		}
 		
-		@media (hover: hover) {
-			.Checkbox-layer:hover {
-				--color: var(--m3-scheme-on-surface);
-				background-color: rgb(var(--color) / 0.08);
-			}
+		input:focus-visible + .layer-container {
+			background-color: rgb(var(--m3-scheme-on-surface));
 		}
-		.Checkbox-layer:active,
-		input:focus-visible + .Checkbox-layer {
-			--color: var(--m3-scheme-on-surface);
-			background-color: rgb(var(--color) / 0.12);
+		input:checked + .layer-container {
+			background-color: rgb(var(--m3-scheme-primary));
 		}
-		input:checked + .Checkbox-layer {
-			--color: var(--m3-scheme-primary);
+		input:checked + .layer-container .checkbox-box {
+			background-color: rgb(var(--m3-scheme-primary));
 		}
-		input:checked + .Checkbox-layer::before {
-			background-color: rgb(var(--color));
-		}
-		input:checked + .Checkbox-layer svg {
+
+		input:checked ~ svg {
 			opacity: 1;
 		}
 		
-		input:disabled + .Checkbox-layer {
-			background-color: transparent;
-			--color: var(--m3-scheme-on-surface) / 0.38;
-			pointer-events: none;
+		input:disabled + .layer-container {
+			color: rgb(var(--m3-scheme-on-surface) / 0.38);
+			cursor: not-allowed;
 		}
-		input:disabled + .Checkbox-layer svg {
+
+		input:disabled:checked + .layer-container {
+			color: transparent;
+		}
+		input:disabled:checked + .layer-container .checkbox-box {
+			background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
+		}
+
+		input:disabled ~ svg {
 			color: rgb(var(--m3-scheme-surface));
-		}
-		input:disabled:checked + .Checkbox-layer::before {
-			border-color: transparent;
 		}
 
 		.Checkbox-m3-container {
@@ -89,31 +85,34 @@ export const Checkbox: Component<{
 			-webkit-print-color-adjust: exact;
 		}
 		@media screen and (forced-colors: active) {
-			input:checked + .Checkbox-layer::before {
+			input:checked + .layer-container .checkbox-box {
 				background-color: selecteditem;
 				border-color: selecteditem !important;
 			}
-			input:disabled + .Checkbox-layer {
+			input:disabled + .layer-container {
 				opacity: 0.38;
 			}
 		}
 	`;
 
 	this._leak = true;
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<div class="Checkbox-m3-container" style={use`display: ${this.display};`} {...this.extraOptions}>
 				{this.children}
-				<div class="Checkbox-layer">
-					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M 4.83 13.41 L 9 17.585 L 19.59 7"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.41"
-						/>
-					</svg>
+				<div class="layer-container" on:pointerdown={layer.$.ripple}>
+					{layer}
+					<div class="checkbox-box" />
 				</div>
+				<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M 4.83 13.41 L 9 17.585 L 19.59 7"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.41"
+					/>
+				</svg>
 			</div>
 		</span>
 	)

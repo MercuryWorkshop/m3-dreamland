@@ -1,6 +1,7 @@
 import { IconifyIcon } from "@iconify/types";
 import { Icon } from "../icon";
 import { v4 as uuidv4 } from "uuid";
+import { Layer } from "../ripple";
 
 export type TabsItem = { name: string, value: string, icon?: IconifyIcon };
 
@@ -54,8 +55,7 @@ export const Tabs: Component<{
 			align-items: center;
 			justify-content: center;
 
-			color: rgb(var(--text));
-			--text: var(--m3-scheme-on-surface-variant);
+			color: rgb(var(--m3-scheme-on-surface-variant));
 			user-select: none;
 			-webkit-tap-highlight-color: transparent;
 			cursor: pointer;
@@ -68,17 +68,13 @@ export const Tabs: Component<{
 
 		@media (hover: hover) {
 			.Tabs-m3-container label:hover {
-				--text: var(--m3-scheme-on-surface);
-				background-color: rgb(var(--text) / 0.08);
+				color: rgb(var(--m3-scheme-on-surface));
 			}
 		}
 		input:focus-visible + label,
-		input:active + label {
-			--text: var(--m3-scheme-on-surface);
-			background-color: rgb(var(--text) / 0.12);
-		}
+		input:active + label,
 		input:checked + label {
-			--text: var(--m3-scheme-on-surface);
+			color: rgb(var(--m3-scheme-on-surface));
 		}
 		
 		.bar {
@@ -107,7 +103,7 @@ export const Tabs: Component<{
 			height: 1.5rem;
 		}
 		.primary > input:checked + label {
-			--text: var(--m3-scheme-primary);
+			color: rgb(var(--m3-scheme-primary));
 		}
 		.primary > .bar {
 			width: 3rem;
@@ -143,6 +139,7 @@ export const Tabs: Component<{
 				<div class="divider" />
 				{use(this.items, x => x.map((x) => {
 					const id = name + x.value;
+					const layer = <Layer />;
 					return (
 						<>
 							<input
@@ -154,7 +151,8 @@ export const Tabs: Component<{
 								checked={use(this.tab, y => y == x.value)}
 								{...this.extraOptions}
 							/>
-							<label for={id} class:tall={x.icon}>
+							<label for={id} class:tall={x.icon} on:pointerdown={layer.$.ripple}>
+								{layer}
 								{x.icon ?
 									<Icon icon={x.icon} /> : null}
 								<span class="m3-font-title-small">{x.name}</span>

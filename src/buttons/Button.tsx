@@ -1,3 +1,5 @@
+import { Layer } from "../ripple";
+
 export const Button: Component<{
 	type: "elevated" | "filled" | "tonal" | "outlined" | "text",
 
@@ -32,11 +34,6 @@ export const Button: Component<{
 			cursor: pointer;
 			position: relative;
 			overflow: hidden;
-		}
-		.Button-layer {
-			position: absolute;
-			inset: 0;
-			transition: all 200ms;
 		}
 
 		.Button-m3-container > * {
@@ -103,9 +100,6 @@ export const Button: Component<{
 			-webkit-tap-highlight-color: transparent;
 		}
 		@media (hover: hover) {
-			.Button-m3-container:enabled:hover > .Button-layer {
-				background-color: rgb(var(--text) / 0.08);
-			}
 			.Button-m3-container:enabled.elevated:hover {
 				box-shadow: var(--m3-util-elevation-2);
 			}
@@ -115,10 +109,6 @@ export const Button: Component<{
 			.Button-m3-container:enabled.tonal:hover {
 				box-shadow: var(--m3-util-elevation-1);
 			}
-		}
-		.Button-m3-container:enabled:focus-visible > .Button-layer,
-		.Button-m3-container:enabled:active > .Button-layer {
-			background-color: rgb(var(--text) / 0.12);
 		}
 
 		.Button-m3-container {
@@ -138,6 +128,7 @@ export const Button: Component<{
 	`;
 	this._leak = true;
 
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<button
@@ -148,8 +139,9 @@ export const Button: Component<{
 				{...this.extraOptions}
 
 				on:click={this["on:click"]}
+				on:pointerdown={layer.$.ripple}
 			>
-				<div class="Button-layer" />
+				{layer}
 				{this.children}
 			</button>
 		</span>

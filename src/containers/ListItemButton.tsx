@@ -1,3 +1,5 @@
+import { Layer } from "../ripple";
+
 export const ListItemButton: Component<{
 	overline?: string,
 	headline?: string,
@@ -32,12 +34,15 @@ export const ListItemButton: Component<{
 			width: 100%;
 		}
 		.ListItemButton-m3-container {
-			padding: 0.5rem 1.5rem 0.5rem 1rem;
 			align-items: center;
+			padding: 0.5rem 1.5rem 0.5rem 1rem;
 			gap: 1rem;
 			text-align: inherit;
+
 			background-color: transparent;
 			border: none;
+			position: relative;
+
 			-webkit-tap-highlight-color: transparent;
 			cursor: pointer;
 			transition: background-color 200ms;
@@ -76,19 +81,10 @@ export const ListItemButton: Component<{
 		.headline {
 			color: rgb(var(--m3-scheme-on-surface));
 		}
-
-		@media (hover: hover) {
-			.ListItemButton-m3-container:hover {
-				background-color: rgb(var(--m3-scheme-on-surface) / 0.08);
-			}
-		}
-		.ListItemButton-m3-container:focus-visible,
-		.ListItemButton-m3-container:active {
-			background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
-		}
 	`;
 	this._leak = true;
 
+	const layer = <Layer />;
 	return (
 		<span class={cssClass}>
 			<button
@@ -97,7 +93,9 @@ export const ListItemButton: Component<{
 				class={use`ListItemButton-m3-container lines-${this._lines}`}
 				style={use`display: ${this.display}`}
 				{...this.extraOptions}
+				on:pointerdown={layer.$.ripple}
 			>
+				{layer}
 				<div class="leading">
 					{this.children[0]}
 				</div>
