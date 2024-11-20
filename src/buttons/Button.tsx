@@ -7,7 +7,7 @@ export const Button: Component<{
 	iconType?: "none" | "left" | "full",
 	display?: string,
 	extraOptions?: any,
-	"on:click"?: () => void|(e: PointerEvent) => void,
+	"on:click"?: (() => void) | ((e: PointerEvent) => void),
 }, {
 	children: any,
 	_leak: true,

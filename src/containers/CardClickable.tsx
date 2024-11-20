@@ -2,7 +2,7 @@ import { Layer } from "../ripple";
 
 export const CardClickable: Component<{
 	type: "filled" | "elevated" | "outlined",
-	"on:click"?: () => void|(e: PointerEvent) => void,
+	"on:click"?: (() => void) | ((e: PointerEvent) => void),
 
 	display?: string,
 	extraOptions?: any,

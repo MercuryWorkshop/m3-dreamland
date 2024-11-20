@@ -5,7 +5,7 @@ import { Layer } from "../ripple";
 export const FAB: Component<{
 	icon?: IconifyIcon | null,
 	text?: string,
-	"on:click"?: () => void|(e: PointerEvent) => void,
+	"on:click"?: (() => void) | ((e: PointerEvent) => void),
 
 	color?: "primary" | "surface" | "secondary" | "tertiary",
 	size?: "small" | "normal" | "large",
