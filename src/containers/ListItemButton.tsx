@@ -7,7 +7,7 @@ export const ListItemButton: Component<{
 
 	lines?: number | null,
 
-	"on:click"?: (e?: PointerEvent) => void,
+	"on:click"?: () => void|(e: PointerEvent) => void,
 
 	display?: string,
 	extraOptions?: any,

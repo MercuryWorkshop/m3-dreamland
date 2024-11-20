@@ -10,7 +10,7 @@ export const Chip: Component<{
 	disabled?: boolean,
 	selected?: boolean,
 
-	"on:click"?: (e?: PointerEvent) => void,
+	"on:click"?: () => void|(e: PointerEvent) => void,
 
 	display?: string,
 	extraOptions?: any,

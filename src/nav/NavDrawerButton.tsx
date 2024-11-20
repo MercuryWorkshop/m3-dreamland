@@ -6,7 +6,7 @@ export const NavDrawerButton: Component<{
 
 	selected?: boolean,
 
-	"on:click"?: (e?: PointerEvent) => void,
+	"on:click"?: () => void|(e: PointerEvent) => void,
 
 	extraOptions?: any,
 }, {
