@@ -44,7 +44,7 @@ export const Checkbox: Component<{
 			-webkit-tap-highlight-color: transparent;
 		}
 
-		svg {
+		.Checkbox-m3-container > svg {
 			position: absolute;
 			inset: 0;
 			color: rgb(var(--m3-scheme-on-primary));
@@ -70,7 +70,6 @@ export const Checkbox: Component<{
 		input:checked ~ svg > path {
 			stroke-dashoffset: 0;
 			opacity: 1;
-			transition: stroke-dashoffset 200ms;
 		}
 
 		input:disabled + .layer-container {
@@ -107,7 +106,7 @@ export const Checkbox: Component<{
 	this._leak = true;
 	const layer = <Layer />;
 	return (
-		<span class={cssClass}>
+		<label class={cssClass}>
 			<div class="Checkbox-m3-container" style={use`display: ${this.display};`} {...this.extraOptions}>
 				{this.children}
 				<div class="layer-container" on:pointerdown={layer.$.ripple}>
@@ -123,6 +122,6 @@ export const Checkbox: Component<{
 					/>
 				</svg>
 			</div>
-		</span>
+		</label>
 	)
 }

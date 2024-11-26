@@ -44,7 +44,7 @@ export const CheckboxAnim: Component<{
 			-webkit-tap-highlight-color: transparent;
 		}
 
-		svg {
+		.CheckboxAnim-m3-container > svg {
 			position: absolute;
 			inset: 0;
 			color: rgb(var(--m3-scheme-on-primary));
@@ -109,7 +109,7 @@ export const CheckboxAnim: Component<{
 
 	const layer = <Layer />;
 	return (
-		<span class={cssClass}>
+		<label class={cssClass}>
 			<div style={use`display: ${this.display};`} {...this.extraOptions} class="CheckboxAnim-m3-container">
 				{this.children}
 				<div class="layer-container" on:pointerdown={layer.$.ripple}>
@@ -125,6 +125,6 @@ export const CheckboxAnim: Component<{
 					/>
 				</svg>
 			</div>
-		</span>
+		</label>
 	)
 }
