@@ -64,7 +64,7 @@ export const Dialog: Component<{
 		.headline.center {
 			text-align: center;
 		}
-		.content {
+		.Dialog-m3-container > .content {
 			color: rgb(var(--m3-scheme-on-surface-variant));
 			margin-bottom: 1.5rem;
 		}
@@ -92,13 +92,13 @@ export const Dialog: Component<{
 				dialogIn 0.5s cubic-bezier(0.05, 0.7, 0.1, 1),
 				opacity 100ms cubic-bezier(0.05, 0.7, 0.1, 1);
 		}
-		dialog[open] .headline {
+		dialog[open] > .Dialog-m3-container > .headline {
 			animation: opacity 150ms;
 		}
-		dialog[open] .content {
+		dialog[open] > .Dialog-m3-container > .content {
 			animation: opacity 200ms;
 		}
-		dialog[open] .buttons {
+		dialog[open] > .Dialog-m3-container > .buttons {
 			position: relative;
 			animation:
 				buttonsIn 0.5s cubic-bezier(0.05, 0.7, 0.1, 1),
