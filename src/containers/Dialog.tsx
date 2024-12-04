@@ -173,7 +173,7 @@ export const Dialog: Component<{
 			>
 				<div class="Dialog-m3-container">
 					{use(this.icon, x => x ? <Icon icon={this.icon} /> : null)}
-					<p class="headline m3-font-headline-small" class:center={use(this.icon, x => !!x)}>{this.headline}</p>
+					<p class="headline m3-font-headline-small" class:center={use(this.icon, x => !!x)}>{use(this.headline)}</p>
 					<div class="content m3-font-body-medium">
 						{this.children[0]}
 					</div>
