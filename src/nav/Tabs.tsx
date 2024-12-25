@@ -140,25 +140,25 @@ export const Tabs: Component<{
 				{use(this.items, x => x.map((x) => {
 					const id = name + x.value;
 					const layer = <Layer />;
-					return (
-						<>
-							<input
-								type="radio"
-								name={name}
-								id={id}
-								value={x.value}
-								on:change={() => { this.tab = x.value; }}
-								checked={use(this.tab, y => y == x.value)}
-								{...this.extraOptions}
-							/>
-							<label for={id} class:tall={x.icon} on:pointerdown={layer.$.ripple}>
-								{layer}
-								{x.icon ?
-									<Icon icon={x.icon} /> : null}
-								<span class="m3-font-title-small">{x.name}</span>
-							</label>
-						</>
-					)
+
+					// @ts-ignore
+					return <>
+						<input
+							type="radio"
+							name={name}
+							id={id}
+							value={x.value}
+							on:change={() => { this.tab = x.value; }}
+							checked={use(this.tab, y => y == x.value)}
+							{...this.extraOptions}
+						/>
+						<label for={id} class:tall={x.icon} on:pointerdown={layer.$.ripple}>
+							{layer}
+							{x.icon ?
+								<Icon icon={x.icon} /> : null}
+							<span class="m3-font-title-small">{x.name}</span>
+						</label>
+					</>
 				}))}
 				<div class="bar" />
 			</div>
